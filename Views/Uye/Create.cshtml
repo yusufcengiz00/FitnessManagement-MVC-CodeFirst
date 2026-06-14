@@ -1,0 +1,56 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@model Project1.Models.Uye
+
+@{
+    ViewData["Title"] = "Yeni Üye Ekle";
+}
+
+<div class="container mt-4">
+    <h2>Yeni Üye Kayıt Formu</h2>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-6">
+            <form asp-action="Create" method="post">
+
+                <div class="mb-3">
+                    <label class="form-label">Üye Adı</label>
+                    <input asp-for="UyeAdi" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Soyadı</label>
+                    <input asp-for="UyeSoyadi" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Yaş</label>
+                    <input asp-for="Yas" type="number" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Kayıt Olacağı Salon</label>
+                    <select asp-for="SalonID" class="form-control">
+                        <option value="">-- Lütfen Bir Salon Seçin --</option>
+
+                        @if (ViewBag.Salonlar != null)
+                        {
+                            foreach (var salon in ViewBag.Salonlar)
+                            {
+                                // Değer olarak SalonID'yi alacak, ekranda ise SalonAdi yazacak
+                                <option value="@salon.SalonID">@salon.SalonAdi</option>
+                            }
+                        }
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-success">Kaydet</button>
+                <a asp-action="Index" class="btn btn-secondary">Listeye Dön</a>
+
+            </form>
+        </div>
+    </div>
+</div>

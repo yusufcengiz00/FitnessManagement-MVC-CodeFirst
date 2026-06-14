@@ -1,0 +1,76 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Hizmetlerimiz";
+}
+
+<style>
+    .service-card {
+        background-color: #1e293b;
+        border: 1px solid #334155;
+        border-radius: 12px;
+        transition: all 0.25s ease-in-out;
+    }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: #38bdf8;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+    .icon-shape {
+        width: 60px;
+        height: 60px;
+        background-color: rgba(56, 189, 248, 0.1);
+        color: #38bdf8;
+        border-radius: 50px;
+    }
+</style>
+
+<div class="col-12 text-center mb-5">
+    <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-2 rounded-pill fw-bold small text-uppercase tracking-wider">Neler Sunuyoruz?</span>
+    <h2 class="fw-bold text-white mt-2" style="font-size: 2.2rem; letter-spacing: -0.5px;">Hizmetlerimiz</h2>
+    <div class="mx-auto bg-primary rounded mt-2" style="height: 3px; width: 60px;"></div>
+</div>
+
+<div class="row g-4 justify-content-center">
+
+    <!-- Kart 1: Antrenman -->
+    <div class="col-12 col-md-6 col-lg-4">
+        <div class="card h-100 service-card p-3">
+            <div class="card-body text-center d-flex flex-column align-items-center">
+                <div class="icon-shape d-flex align-items-center justify-content-center mb-3">
+                    <i class="fa-solid fa-dumbbell fa-xl"></i>
+                </div>
+                <h5 class="fw-bold text-white mb-2">Bireysel Antrenman</h5>
+                <p class="text-white-50 small m-0 text-center">Uzman eğitmenlerimiz eşliğinde hedeflerinize ve vücut yapınıza en uygun çalışma programları.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Kart 2: Supplement -->
+    <div class="col-12 col-md-6 col-lg-4">
+        <div class="card h-100 service-card p-3">
+            <div class="card-body text-center d-flex flex-column align-items-center">
+                <div class="icon-shape d-flex align-items-center justify-content-center mb-3" style="background-color: rgba(34, 197, 94, 0.1); color: #22c55e;">
+                    <i class="fa-solid fa-capsules fa-xl"></i>
+                </div>
+                <h5 class="fw-bold text-white mb-2">Beslenme & Takviye</h5>
+                <p class="text-white-50 small m-0 text-center">Gelişiminizi hızlandıracak, profesyonel supplement kombinasyonları ve makro beslenme planı.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Kart 3: Tesisler -->
+    <div class="col-12 col-md-6 col-lg-4">
+        <div class="card h-100 service-card p-3">
+            <div class="card-body text-center d-flex flex-column align-items-center">
+                <div class="icon-shape d-flex align-items-center justify-content-center mb-3" style="background-color: rgba(168, 85, 247, 0.1); color: #a855f7;">
+                    <i class="fa-solid fa-building fa-xl"></i>
+                </div>
+                <h5 class="fw-bold text-white mb-2">Geniş Salon Alanları</h5>
+                <p class="text-white-50 small m-0 text-center">Ferah, yüksek tavanlı ve hijyen standartlarına maksimum özen gösterilen çalışma istasyonları.</p>
+            </div>
+        </div>
+    </div>
+
+</div>

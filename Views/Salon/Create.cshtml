@@ -1,0 +1,35 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@model Project1.Models.Salon
+
+@{
+    ViewData["Title"] = "Yeni Salon Ekle";
+}
+
+<div class="container mt-4">
+    <h2>Yeni Salon Kayıt Formu</h2>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-6">
+            <form asp-action="Create" method="post">
+
+                <div class="mb-3">
+                    <label class="form-label">Salon Adı</label>
+                    <input asp-for="SalonAdi" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Salon Adresi</label>
+                    <input asp-for="SalonAdres" class="form-control" />
+                </div>
+
+                <button type="submit" class="btn btn-success">Kaydet</button>
+                <a asp-action="Index" class="btn btn-secondary">Listeye Dön</a>
+
+            </form>
+        </div>
+    </div>
+</div>

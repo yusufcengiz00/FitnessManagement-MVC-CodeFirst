@@ -1,0 +1,165 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>@ViewData["Title"] - Fitness Center</title>
+    <link rel="icon" type="image/x-icon" href="~/userstemplate/assets/favicon.ico" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+    <link href="~/userstemplate/css/styles.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <style>
+        /* Tamamen Koyu Mod Arka Planı */
+        body {
+        background-color: #0f172a !important;
+        color: #f1f5f9 !important;
+        }
+        /* Navbar Sabitleme ve Yazı Boyutu Artırma */
+        #mainNav {
+        position: fixed !important;
+        top: 0;
+        width: 100%;
+        z-index: 1030;
+        background-color: rgba(15, 23, 42, 0.95) !important;
+        border-bottom: 1px solid #1e293b;
+        backdrop-filter: blur(10px);
+        padding-top: 1rem !important;
+        padding-bottom: 1rem !important;
+        }
+
+        #mainNav .navbar-brand {
+        font-size: 1.8rem !important;
+        font-weight: 800 !important;
+        color: #38bdf8 !important;
+        }
+
+        #mainNav .nav-link {
+        font-size: 1.05rem !important; /* Font büyütüldü */
+        font-weight: 600 !important;
+        color: #94a3b8 !important;
+        margin-left: 1.2rem;
+        transition: color 0.2s ease;
+        }
+
+        #mainNav .nav-link:hover {
+        color: #ffffff !important;
+        }
+        /* Masthead Ayarı */
+        .masthead {
+        margin-top: 76px;
+        background-color: #0f172a !important;
+        }
+
+        .about-section {
+        background: linear-gradient(to bottom, #0f172a 0%, #1e293b 100%) !important;
+        }
+    </style>
+</head>
+<body id="page-top">
+
+    <!-- Sabit ve Büyütülmüş Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark" id="mainNav">
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand" href="#page-top">Fitness Center</a>
+            <button class="navbar-toggler text-white border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars fa-lg"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#about">Hakkımızda</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Hizmetlerimiz</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">İletişim</a></li>
+                    <li class="nav-item"><a class="nav-link text-warning fw-bold" asp-controller="Admin" asp-action="AdminIndex">Admin Panel</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Giriş Alanı -->
+    <header class="masthead">
+        <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
+            <div class="d-flex justify-content-center">
+                <div class="text-center">
+                    <h1 class="mx-auto my-0 text-uppercase text-white fw-bold">GÜCÜNÜ KEŞFET</h1>
+                    <h2 class="text-white-50 mx-auto mt-2 mb-5" style="font-size: 1.2rem;">Sağlıklı bir yaşam ve hayalindeki vücut için en doğru adrestesin. Bugün başla!</h2>
+                    <a class="btn btn-primary px-4 py-2 rounded-pill fw-semibold" href="#about">Detaylı Bilgi</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hakkımızda Alanı -->
+    <section class="about-section text-center py-5" id="about">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-lg-8">
+                    <h2 class="text-white mb-4 fw-bold">Modern Spor Alanları</h2>
+                    <p class="text-white-50" style="font-size: 1.1rem;">
+                        Son teknoloji ekipmanlarımız, uzman antrenör kadromuz ve geniş salonlarımızla hedeflerinize ulaşmanız için her şeyi hazırladık.
+                    </p>
+                </div>
+            </div>
+            <img class="img-fluid my-4" src="~/userstemplate/assets/img/ipad.jpg" alt="..." style="max-height: 350px;" />
+        </div>
+    </section>
+
+    <!-- Hizmetlerimiz / İçerik Alanı (Koyu ve Modern Yapıldı) -->
+    <section class="projects-section" id="projects" style="background-color: #0f172a; padding: 5rem 0;">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-0 mb-5 align-items-center p-4 rounded-3" style="background-color: #1e293b; border: 1px solid #334155;">
+                <div class="col-xl-8 col-lg-7"><img class="img-fluid rounded mb-3 mb-lg-0" src="~/userstemplate/assets/img/bg-masthead.jpg" alt="..." /></div>
+                <div class="col-xl-4 col-lg-5">
+                    <div class="featured-text text-center text-lg-left p-4">
+                        <h4 class="text-white fw-bold">Hedefine Odaklan</h4>
+                        <p class="text-white-50 mb-0" style="font-size: 0.95rem;">Kişiye özel antrenman programları ve supplement destek planlamalarıyla gelişimini şansa bırakma.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sayfa İçeriğinin (RenderBody) Geleceği Alan (Koyu Uyumlu) -->
+            <div class="row justify-content-center">
+                @RenderBody()
+            </div>
+        </div>
+    </section>
+
+    <!-- İletişim Alanı -->
+    <section class="contact-section" id="contact" style="background-color: #0b0f19; padding: 4rem 0;">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <div class="card py-4 h-100 border-0 shadow-sm" style="background-color: #1e293b; border: 1px solid #334155 !important;">
+                        <div class="card-body text-center">
+                            <i class="fas fa-map-marked-alt text-primary fa-lg mb-3"></i>
+                            <h4 class="text-white text-uppercase m-0" style="font-size: 1.1rem;">Adres</h4>
+                            <hr class="my-3 mx-auto opacity-25" style="border-color: #64748b; width: 40px;" />
+                            <div class="small text-white-50">Merkez Şubesi, İstanbul, Türkiye</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <div class="card py-4 h-100 border-0 shadow-sm" style="background-color: #1e293b; border: 1px solid #334155 !important;">
+                        <div class="card-body text-center">
+                            <i class="fas fa-envelope text-primary fa-lg mb-3"></i>
+                            <h4 class="text-white text-uppercase m-0" style="font-size: 1.1rem;">E-Posta</h4>
+                            <hr class="my-3 mx-auto opacity-25" style="border-color: #64748b; width: 40px;" />
+                            <div class="small text-white-50"><a href="#!" class="text-info text-decoration-none">info@fitnesscenter.com</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer small text-center text-white-50 py-4" style="background-color: #0b0f19; border-top: 1px solid #1e293b;">
+        <div class="container px-4 px-lg-5">Copyright &copy; Fitness Center 2026</div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/userstemplate/js/scripts.js"></script>
+</body>
+</html>

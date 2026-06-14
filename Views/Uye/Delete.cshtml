@@ -1,0 +1,25 @@
+﻿@model Project1.Models.Uye
+
+@{
+    ViewData["Title"] = "Üye Sil";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container mt-4">
+    <h2 class="text-danger">Üye Silme Onayı</h2>
+    <h3>Bu üyeyi silmek istediğinizden emin misiniz?</h3>
+    <hr />
+
+    <div class="card col-md-6 p-3">
+        <p><strong>Adı:</strong> @Model.UyeAdi</p>
+        <p><strong>Soyadı:</strong> @Model.UyeSoyadi</p>
+        <p><strong>Yaşı:</strong> @Model.Yas</p>
+
+        <form asp-action="Delete" method="post">
+            <input type="hidden" asp-for="UyeID" />
+            <input type="hidden" asp-for="SalonID" />
+            <button type="submit" class="btn btn-danger">Evet, Sil</button>
+            <a asp-action="Index" class="btn btn-secondary">Vazgeç</a>
+        </form>
+    </div>
+</div>

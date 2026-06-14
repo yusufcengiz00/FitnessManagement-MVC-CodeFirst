@@ -1,0 +1,51 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@model Project1.Models.Supplement
+
+@{
+    ViewData["Title"] = "Yeni Supplement Ekle";
+}
+
+<div class="container mt-4">
+    <h2>Yeni Supplement Kayıt Formu</h2>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-6">
+            <form asp-action="Create" method="post">
+
+                <div class="mb-3">
+                    <label class="form-label">Supplement Adı</label>
+                    <input asp-for="SupplementAdi" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Fiyatı</label>
+                    <input asp-for="SupplementFiyati" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Bulunduğu Salon</label>
+                    <select asp-for="SalonID" class="form-control">
+                        <option value="">-- Lütfen Bir Salon Seçin --</option>
+
+                        @if (ViewBag.Salonlar != null)
+                        {
+                            foreach (var salon in ViewBag.Salonlar)
+                            {
+                                // Değer olarak SalonID'yi alacak, ekranda ise SalonAdi yazacak
+                                <option value="@salon.SalonID">@salon.SalonAdi</option>
+                            }
+                        }
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-success">Kaydet</button>
+                <a asp-action="Index" class="btn btn-secondary">Listeye Dön</a>
+
+            </form>
+        </div>
+    </div>
+</div>

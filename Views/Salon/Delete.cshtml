@@ -1,0 +1,23 @@
+﻿@model Project1.Models.Salon
+
+@{
+    ViewData["Title"] = "Salon Sil";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container mt-4">
+    <h2 class="text-danger">Salon Silme Onayı</h2>
+    <h3>Bu salonu silmek istediğinizden emin misiniz?</h3>
+    <hr />
+
+    <div class="card col-md-6 p-3">
+        <p><strong>Salon Adı:</strong> @Model.SalonAdi</p>
+        <p><strong>Salon Adresi:</strong> @Model.SalonAdres</p>
+
+        <form asp-action="Delete" method="post">
+            <input type="hidden" asp-for="SalonID" />
+            <button type="submit" class="btn btn-danger">Evet, Sil</button>
+            <a asp-action="Index" class="btn btn-secondary">Vazgeç</a>
+        </form>
+    </div>
+</div>

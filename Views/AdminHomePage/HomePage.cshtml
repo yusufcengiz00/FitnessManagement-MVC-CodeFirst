@@ -1,0 +1,110 @@
+﻿@{
+    ViewData["Title"] = "Yönetim Paneline Hoş Geldiniz";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Sayfa Arka Planını Lightgray Yapmak İçin Body Sınıfına Müdahale -->
+<style>
+    body {
+        background-color: #f4f6f9 !important;
+        color: #333333 !important;
+    }
+
+    .custom-icon-box {
+        width: 55px;
+        height: 55px;
+        transition: transform 0.2s ease;
+    }
+
+    .basic-card {
+        background-color: #ffffff;
+        border: 1px solid #e2e8f0 !important;
+        border-radius: 10px;
+        transition: all 0.2s ease-in-out;
+    }
+
+        .basic-card:hover {
+            transform: translateY(-2px);
+            border-color: #cbd5e1 !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+        }
+</style>
+
+<div class="container-fluid pt-4">
+
+    <!-- Üst Başlık ve Selamlama Alanı (Görsel tamamen kaldırıldı) -->
+    <div class="row mb-5 pt-2">
+        <div class="col-12 text-center">
+            <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-2 rounded-pill fw-semibold small mb-2">
+                <i class="fa-solid fa-circle-check me-1"></i> Yönetim Paneli Canlı
+            </span>
+            <h2 class="fw-bold text-dark mt-2" style="letter-spacing: -0.5px;">
+                Merhaba Yönetici, <span class="text-primary">Hoş Geldiniz!</span>
+            </h2>
+            <p class="text-muted mx-auto mb-3" style="max-width: 600px; font-size: 0.95rem;">
+                Sistem analizlerine ve veritabanı özetlerine aşağıdan ulaşabilir, diğer tüm yönetim süreçleri ve kayıt işlemleri için sol menüyü kullanabilirsiniz.
+            </p>
+            <div class="mx-auto bg-primary opacity-25 rounded" style="height: 3px; width: 50px;"></div>
+        </div>
+    </div>
+
+    <!-- Modüllere Hızlı Erişim Kartları (Basic ve Şık Tasarım) -->
+    <div class="row g-3 justify-content-center">
+
+        <!-- Raporlar Kartı -->
+        <div class="col-12 col-md-6 col-xl-4">
+            <div class="card h-100 basic-card p-2">
+                <div class="card-body text-center d-flex flex-column justify-content-between">
+                    <div>
+                        <div class="custom-icon-box mx-auto bg-info bg-opacity-10 text-info rounded-circle d-flex align-items-center justify-content-center mb-3">
+                            <i class="fas fa-chart-pie fa-lg"></i>
+                        </div>
+                        <h5 class="card-title fw-bold text-dark mb-2" style="font-size: 1.1rem;">Sistem Raporları</h5>
+                        <p class="card-text text-muted small px-2">Yaş ortalamaları, en pahalı ürünler ve detaylı salon analiz metrikleri.</p>
+                    </div>
+                    <a asp-controller="Rapor" asp-action="Index" class="btn btn-outline-info btn-sm w-100 rounded-pill fw-semibold mt-3 py-2">
+                        Raporları Gör <i class="fa-solid fa-arrow-right ms-1 small"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Örnek Ek Kart: Üye İşlemleri -->
+        <div class="col-12 col-md-6 col-xl-4">
+            <div class="card h-100 basic-card p-2">
+                <div class="card-body text-center d-flex flex-column justify-content-between">
+                    <div>
+                        <div class="custom-icon-box mx-auto bg-primary bg-opacity-10 text-primary rounded-circle d-flex align-items-center justify-content-center mb-3">
+                            <i class="fas fa-users fa-lg"></i>
+                        </div>
+                        <h5 class="card-title fw-bold text-dark mb-2" style="font-size: 1.1rem;">Üye Yönetimi</h5>
+                        <p class="card-text text-muted small px-2">Aktif/pasif üye listeleri, yeni üye kayıtları ve üyelik planı güncellemeleri.</p>
+                    </div>
+                    <a asp-controller="Uye" asp-action="Index" class="btn btn-outline-primary btn-sm w-100 rounded-pill fw-semibold mt-3 py-2">
+                        Üyeleri Yönet <i class="fa-solid fa-arrow-right ms-1 small"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Örnek Ek Kart: Eğitmen Kadrosu -->
+        <div class="col-12 col-md-6 col-xl-4">
+            <div class="card h-100 basic-card p-2">
+                <div class="card-body text-center d-flex flex-column justify-content-between">
+                    <div>
+                        <div class="custom-icon-box mx-auto bg-success bg-opacity-10 text-success rounded-circle d-flex align-items-center justify-content-center mb-3">
+                            <i class="fas fa-dumbbell fa-lg"></i>
+                        </div>
+                        <h5 class="card-title fw-bold text-dark mb-2" style="font-size: 1.1rem;">Antrenör İşlemleri</h5>
+                        <p class="card-text text-muted small px-2">Eğitmen kadrosu, uzmanlık alanları, kıdem ve tecrübe dağılımları.</p>
+                    </div>
+                    <a asp-controller="Antrenor" asp-action="Index" class="btn btn-outline-success btn-sm w-100 rounded-pill fw-semibold mt-3 py-2">
+                        Antrenörleri Gör <i class="fa-solid fa-arrow-right ms-1 small"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,91 @@
+﻿@{
+    ViewData["Title"] = "Detaylı Raporlar";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid px-4 mt-4">
+    
+    <hr class="mb-4" />
+
+    <div class="row">
+        <!-- ÜYE -->
+        <div class="col-xl-6 mb-4">
+            <div class="card h-100 shadow-sm border-0" style="border-radius: 12px;">
+                <div class="card-header bg-primary text-white py-3" style="border-top-left-radius: 12px; border-top-right-radius: 12px;">
+                    <h5 class="card-title mb-0 fw-semibold"><i class="fas fa-users me-2"></i> Üye Demografisi Raporu</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                        <span>Aktif Üyelerin Yaş Ortalaması:</span>
+                        <span class="badge bg-primary rounded-pill fs-6 px-3">@ViewBag.YasOrtalamasi Yaş</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                        <span>En Yaşlı Üye Yaşı:</span>
+                        <span class="badge bg-dark rounded-pill fs-6 px-3">@ViewBag.EnYasliUye</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                        <span>En Genç Üye Yaşı:</span>
+                        <span class="badge bg-info text-dark rounded-pill fs-6 px-3 fw-bold">@ViewBag.EnGencUye</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ANTRENÖR VE TECRÜBE ANALİZİ -->
+        <div class="col-xl-6 mb-4">
+            <div class="card h-100 shadow-sm border-0" style="border-radius: 12px;">
+                <div class="card-header bg-success text-white py-3" style="border-top-left-radius: 12px; border-top-right-radius: 12px;">
+                    <h5 class="card-title mb-0 fw-semibold"><i class="fas fa-dumbbell me-2"></i> Kadro ve Tecrübe Analizi</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                        <span>Toplam Antrenör Sayısı:</span>
+                        <span class="badge bg-success rounded-pill fs-6 px-3">@ViewBag.ToplamAntrenor Kişi</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                        <span>Ortalama Antrenör Tecrübesi:</span>
+                        <span class="badge bg-secondary rounded-pill fs-6 px-3">@ViewBag.OrtalamaTecrube Yıl</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- MAĞAZA VE SUPPLEMENT İSTATİSTİKLERİ -->
+        <div class="col-xl-6 mb-4">
+            <div class="card h-100 shadow-sm border-0" style="border-radius: 12px;">
+                <div class="card-header bg-danger text-white py-3" style="border-top-left-radius: 12px; border-top-right-radius: 12px;">
+                    <h5 class="card-title mb-0 fw-semibold"><i class="fas fa-capsules me-2"></i> Supplement İstatistikleri</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                        <span>En Pahalı Ürün:</span>
+                        <span class="fw-bold text-danger fs-6">@ViewBag.EnPahaliUrunAdi</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                        <span>En Pahalı Ürünün Fiyatı:</span>
+                        <span class="badge bg-danger rounded-pill fs-6 px-3">@ViewBag.EnPahaliUrunFiyat TL</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                        <span>Toplam Ürün Çeşidi:</span>
+                        <span class="badge bg-dark rounded-pill fs-6 px-3">@ViewBag.ToplamUrunCesidi Çeşit</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- TESİS GENEL ÖZETİ -->
+        <div class="col-xl-6 mb-4">
+            <div class="card h-100 shadow-sm border-0" style="border-radius: 12px;">
+                <div class="card-header bg-warning text-dark py-3" style="border-top-left-radius: 12px; border-top-right-radius: 12px;">
+                    <h5 class="card-title mb-0 fw-semibold"><i class="fas fa-building me-2"></i> Tesis Özeti</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                        <span>Hizmet Veren Toplam Salon Şubesi:</span>
+                        <span class="badge bg-warning text-dark rounded-pill fs-6 px-3 fw-bold">@ViewBag.ToplamSalon Şube</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
