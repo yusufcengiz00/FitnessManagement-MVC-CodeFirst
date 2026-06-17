@@ -54,6 +54,7 @@
                         <th class="ps-4 py-3">Üye Bilgisi</th>
                         <th class="py-3">Soyadı</th>
                         <th class="py-3 text-center">Yaş</th>
+                        <th class="py-3 text-center">Kayıtlı Olduğu Salon</th>
                         <th class="pe-4 py-3 text-end">İşlemler</th>
                     </tr>
                 </thead>
@@ -75,6 +76,7 @@
                                 <td class="py-3 text-center">
                                     <span class="badge bg-light text-dark border px-3 py-2 rounded-pill fw-medium">@uye.Yas Yaş</span>
                                 </td>
+                                <td class="text-secondary py-3 text-center">@uye.Salonlar?.SalonAdi</td>
                                 <td class="pe-4 py-3 text-end">
                                     <div class="btn-group gap-1">
                                         <a asp-action="Edit" asp-route-id="@uye.UyeID" class="btn btn-outline-warning btn-sm rounded-2 px-3">
@@ -91,7 +93,7 @@
                     else
                     {
                         <tr>
-                            <td colspan="4" class="text-center py-5 text-muted">
+                            <td colspan="5" class="text-center py-5 text-muted">
                                 <i class="fa-solid fa-user-slash display-6 d-block mb-3 text-secondary"></i>
                                 Aradığınız kriterlere uygun üye bulunamadı.
                             </td>

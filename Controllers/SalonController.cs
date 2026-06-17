@@ -14,21 +14,16 @@ namespace Project1.Controllers
 
         public IActionResult Index(string searchString)
         {
-            // Veritabanındaki salonları sorgu olarak hazırlıyoruz (hemen ToList yapmıyoruz)
             var salonlar = from u in _context.salons
                          select u;
 
-            // Eğer arama kutusuna bir şey yazılmışsa filtreleme yapıyoruz
             if (!String.IsNullOrEmpty(searchString))
             {
-                // Salon adında  bu kelime geçenleri filtrele
                 salonlar = salonlar.Where(s => s.SalonAdi.Contains(searchString));
             }
 
-            // Arama kelimesini kutunun içinde çakılı kalsın diye ViewBag ile sayfaya geri gönderiyoruz
             ViewBag.CurrentFilter = searchString;
 
-            // Filtrelenmiş listeyi ToList() diyerek sayfaya gönderiyoruz
             return View(salonlar.ToList());
         }
         [HttpGet]

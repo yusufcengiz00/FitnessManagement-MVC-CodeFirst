@@ -54,6 +54,7 @@
                         <th class="ps-4 py-3">Kullanıcı Adı</th>
                         <th class="py-3 text-center" style="width: 150px;">Yaş</th>
                         <th class="py-3 text-center" style="width: 180px;">Tecrübe Yılı</th>
+                        <th class="py-3 text-center" style="width: 180px;">Özel Üye</th>
                         <th class="pe-4 py-3 text-end" style="width: 250px;">İşlemler</th>
                     </tr>
                 </thead>
@@ -79,6 +80,12 @@
                                         <i class="fa-solid fa-star me-1" style="font-size: 0.8rem;"></i> @antrenor.TecrübeYili Yıl
                                     </span>
                                 </td>
+                                <td class="py-3 text-center">
+                                    <span class="badge bg-purple-subtle text-purple border border-purple-subtle px-3 py-2 rounded-2 fw-bold">
+                                        <i class="fa-solid fa-star me-1" style="font-size: 0.8rem;"></i> @antrenor.uyeler?.UyeAdi
+                                    </span>
+                                </td>
+                               
                                 <td class="pe-4 py-3 text-end">
                                     <div class="btn-group gap-1">
                                         <a asp-action="Edit" asp-route-id="@antrenor.AntrenorID" class="btn btn-outline-warning btn-sm rounded-2 px-3">
@@ -95,7 +102,7 @@
                     else
                     {
                         <tr>
-                            <td colspan="4" class="text-center py-5 text-muted">
+                            <td colspan="5" class="text-center py-5 text-muted">
                                 <i class="fa-solid fa-user-ninja display-6 d-block mb-3 text-secondary"></i>
                                 Aradığınız kriterlere uygun antrenör bulunamadı.
                             </td>

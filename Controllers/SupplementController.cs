@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Project1.Models;
 
 namespace Project1.Controllers
@@ -18,7 +19,6 @@ namespace Project1.Controllers
             var supplement = from u in _context.supplements
                          select u;
 
-            // Eğer arama kutusuna bir şey yazılmışsa filtreleme yapıyoruz
             if (!String.IsNullOrEmpty(searchString))
             {
 
@@ -26,13 +26,13 @@ namespace Project1.Controllers
             }
 
             ViewBag.CurrentFilter = searchString;
+            supplement = _context.supplements.Include(a => a.salonlar).AsQueryable();
 
             return View(supplement.ToList());
         }
         [HttpGet]
         public IActionResult Create()
         {
-            // Veritabanındaki tüm salonları çekiyoruz
             var salonListesi = _context.salons.ToList();
 
             // View tarafında kullanabilmek için ViewBag içine atıyoruz
@@ -55,7 +55,7 @@ namespace Project1.Controllers
             var supplement = _context.supplements.Find(id);
             if (supplement == null)
             {
-                return NotFound(); // Üye bulunamadıysa 404 hatası ver
+                return NotFound();
             }
             return View(supplement);
         }

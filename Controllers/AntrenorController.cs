@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Project1.Models;
 
 namespace Project1.Controllers
@@ -14,21 +15,17 @@ namespace Project1.Controllers
 
         public IActionResult Index(string searchString)
         {
-            // Veritabanındaki Antrenörleri sorgu olarak hazırlıyoruz (hemen ToList yapmıyoruz)
             var antrenorler = from u in _context.antrenors
                          select u;
 
-            // Eğer arama kutusuna bir şey yazılmışsa filtreleme yapıyoruz
             if (!String.IsNullOrEmpty(searchString))
             {
-                // Antrenör Kullanıcı adında bu kelime geçenleri filtrele
                 antrenorler = antrenorler.Where(s => s.userName.Contains(searchString));
             }
 
-            // Arama kelimesini kutunun içinde çakılı kalsın diye ViewBag ile sayfaya geri gönderiyoruz
             ViewBag.CurrentFilter = searchString;
+             antrenorler = _context.antrenors.Include(a => a.uyeler).AsQueryable();
 
-            // Filtrelenmiş listeyi ToList() diyerek sayfaya gönderiyoruz
             return View(antrenorler.ToList());
         }
         [HttpGet]
@@ -36,7 +33,6 @@ namespace Project1.Controllers
         {
             var uyeListesi = _context.uyes.ToList();
 
-            // View tarafında kullanabilmek için ViewBag içine atıyoruz
             ViewBag.uyes = uyeListesi;
 
             return View();

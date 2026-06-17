@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Project1.Models;
 
 namespace Project1.Controllers
@@ -28,6 +29,7 @@ namespace Project1.Controllers
             // Arama kelimesini kutunun içinde çakılı kalsın diye ViewBag ile sayfaya geri gönderiyoruz
             ViewBag.CurrentFilter = searchString;
 
+            uyeler = _context.uyes.Include(a => a.Salonlar).AsQueryable();
             // Filtrelenmiş listeyi ToList() diyerek sayfaya gönderiyoruz
             return View(uyeler.ToList());
         }
