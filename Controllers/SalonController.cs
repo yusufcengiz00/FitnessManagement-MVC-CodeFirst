@@ -24,7 +24,7 @@ namespace Project1.Controllers
             var products = _context.salons
                 .Select(s => new
                 {
-                    s.SalonID, // Modelindeki birincil anahtar ismi farklıysa (örn. Id) güncelleyebilirsin
+                    s.SalonID,
                     s.SalonAdi
                 })
                 .ToList();

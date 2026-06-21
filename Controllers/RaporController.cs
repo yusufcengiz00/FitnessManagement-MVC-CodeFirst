@@ -138,7 +138,6 @@ namespace Project1.Controllers
             var pdfBytes = pdfDocument.GeneratePdf();
             return File(pdfBytes, "application/pdf", $"Genel_Rapor_{DateTime.Now:yyyyMMdd}.pdf");
         }
-
         [HttpGet]
         public IActionResult ExportToExcel()
         {

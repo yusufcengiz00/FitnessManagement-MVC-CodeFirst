@@ -25,7 +25,7 @@ namespace Project1.Controllers
             var products = _context.uyes
                 .Select(u => new
                 {
-                    u.UyeID, // Modelindeki birincil anahtar UyeID değilse (örn. Id) düzeltmelisin
+                    u.UyeID,
                     AdSoyad = (u.UyeAdi ?? "") + " " + (u.UyeSoyadi ?? ""),
                     SalonAdi = u.Salonlar != null ? u.Salonlar.SalonAdi : "-"
                 })

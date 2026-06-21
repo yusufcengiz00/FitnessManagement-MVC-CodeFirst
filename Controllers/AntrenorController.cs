@@ -10,7 +10,6 @@ namespace Project1.Controllers
 {
     public class AntrenorController : Controller
     {
-
         private readonly ApplicationDbContext _context;
 
         public AntrenorController(ApplicationDbContext dbContext)

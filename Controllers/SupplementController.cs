@@ -25,7 +25,7 @@ namespace Project1.Controllers
             var products = _context.supplements
                 .Select(s => new
                 {
-                    s.SupplementID, // Modelindeki birincil anahtar ismi farklıysa (örn. Id) güncelleyebilirsin
+                    s.SupplementID,
                     s.SupplementAdi,
                     SalonAdi = s.salonlar != null ? s.salonlar.SalonAdi : "-"
                 })
