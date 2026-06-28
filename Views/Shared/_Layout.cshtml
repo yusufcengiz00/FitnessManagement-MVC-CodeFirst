@@ -7,21 +7,19 @@
     <title>@ViewData["Title"] - Fitness Center</title>
     <link rel="icon" type="image/x-icon" href="~/userstemplate/assets/favicon.ico" />
 
-    <!-- Fonts -->
+    <!-- Fontlar -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Bebas+Neue&display=swap" rel="stylesheet" />
 
-    <!-- Icons -->
+    <!-- İkonlar -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-    <!-- Bootstrap -->
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
 
     <style>
-        /* ============================================
-           RESET & BASE
-        ============================================ */
+        /* Sıfırlama ve temel stiller */
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         :root {
@@ -49,9 +47,7 @@
             overflow-x: hidden;
         }
 
-        /* ============================================
-           ANIMATED BACKGROUND GRID
-        ============================================ */
+        /* Arka plan ızgarası */
         .bg-grid {
             position: fixed;
             inset: 0;
@@ -86,9 +82,7 @@
         @@keyframes float1 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(40px,30px)} }
         @@keyframes float2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-30px,-20px)} }
 
-        /* ============================================
-           NAVBAR
-        ============================================ */
+        /* Navigasyon barı */
         #mainNav {
             position: fixed;
             top: 0; left: 0; right: 0;
@@ -195,9 +189,7 @@
             .nav-links a { width: 100%; text-align: center; padding: 10px; }
         }
 
-        /* ============================================
-           HERO SECTION
-        ============================================ */
+        /* Giriş (Hero) alanı */
         .hero-section {
             position: relative;
             min-height: 100vh;
@@ -393,9 +385,7 @@
         }
         @@keyframes scroll-line { 0%{opacity:0;transform:scaleY(0) translateY(-100%)} 50%{opacity:1} 100%{opacity:0;transform:scaleY(1) translateY(0)} }
 
-        /* ============================================
-           FEATURES STRIP
-        ============================================ */
+        /* Özellikler şeridi */
         .features-strip {
             position: relative;
             z-index: 1;
@@ -409,7 +399,6 @@
             margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            divide: 1;
         }
         .feature-strip-item {
             padding: 28px 32px;
@@ -451,9 +440,7 @@
             .feature-strip-item:first-child { border-top: none; }
         }
 
-        /* ============================================
-           ABOUT SECTION
-        ============================================ */
+        /* Hakkımızda alanı */
         .about-section {
             position: relative;
             z-index: 1;
@@ -586,9 +573,7 @@
             margin-top: 1px;
         }
 
-        /* ============================================
-           SERVICES SECTION
-        ============================================ */
+        /* Hizmetler alanı */
         .services-section {
             position: relative;
             z-index: 1;
@@ -660,9 +645,7 @@
             font-family: 'Bebas Neue', sans-serif;
         }
 
-        /* ============================================
-           PROMO BANNER
-        ============================================ */
+        /* Kampanya panosu */
         .promo-section {
             position: relative;
             z-index: 1;
@@ -727,9 +710,7 @@
             .promo-card-img { width: 100%; height: 200px; }
         }
 
-        /* ============================================
-           CONTACT SECTION
-        ============================================ */
+        /* İletişim alanı */
         .contact-section {
             position: relative;
             z-index: 1;
@@ -786,9 +767,7 @@
         }
         .contact-card a:hover { text-decoration: underline; }
 
-        /* ============================================
-           FOOTER
-        ============================================ */
+        /* Alt bilgi (Footer) alanı */
         .site-footer {
             position: relative;
             z-index: 1;
@@ -841,18 +820,14 @@
         }
         .footer-links a:hover { color: var(--accent); }
 
-        /* ============================================
-           CONTAINER UTILITY
-        ============================================ */
+        /* Container yardımcı sınıfı */
         .section-container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 24px;
         }
 
-        /* ============================================
-           SCROLL REVEAL ANIMATION
-        ============================================ */
+        /* Kaydırınca görünme animasyonu */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -870,14 +845,12 @@
     </style>
 </head>
 <body>
-    <!-- Animated Background -->
+    <!-- Arka plan ızgarası ve efekt küreleri -->
     <div class="bg-grid"></div>
     <div class="bg-orb-1"></div>
     <div class="bg-orb-2"></div>
 
-    <!-- ============================
-         NAVBAR
-    ============================ -->
+    <!-- Navigasyon barı -->
     <nav id="mainNav">
         <div class="navbar-inner">
             <a class="nav-brand" href="#hero">
@@ -900,9 +873,7 @@
         </div>
     </nav>
 
-    <!-- ============================
-         HERO
-    ============================ -->
+    <!-- Karşılama alanı -->
     <section class="hero-section" id="hero">
         <div class="hero-bg"></div>
         <div class="hero-overlay"></div>
@@ -959,13 +930,11 @@
 
         <div class="hero-scroll">
             <div class="hero-scroll-line"></div>
-            Scroll
+            Kaydırın
         </div>
     </section>
 
-    <!-- ============================
-         FEATURES STRIP
-    ============================ -->
+    <!-- Özellikler şeridi -->
     <div class="features-strip">
         <div class="features-strip-inner">
             <div class="feature-strip-item">
@@ -1007,9 +976,7 @@
         </div>
     </div>
 
-    <!-- ============================
-         ABOUT
-    ============================ -->
+    <!-- Hakkımızda alanı -->
     <section class="about-section" id="about">
         <div class="section-container">
             <div class="row align-items-center g-5">
@@ -1065,9 +1032,7 @@
         </div>
     </section>
 
-    <!-- ============================
-         SERVICES
-    ============================ -->
+    <!-- Hizmetler alanı -->
     <section class="services-section" id="services">
         <div class="section-container">
             <div class="text-center reveal">
@@ -1131,12 +1096,10 @@
         </div>
     </section>
 
-    <!-- Extra page body (for pages using this layout) -->
+    <!-- Ek sayfa içeriği (Bu yapıyı kullanan diğer sayfalar için) -->
     @RenderBody()
 
-    <!-- ============================
-         PROMO BANNER
-    ============================ -->
+    <!-- Kampanya panosu -->
     <section class="promo-section">
         <div class="promo-inner">
             <div class="promo-card reveal">
@@ -1158,9 +1121,7 @@
         </div>
     </section>
 
-    <!-- ============================
-         CONTACT
-    ============================ -->
+    <!-- İletişim alanı -->
     <section class="contact-section" id="contact">
         <div class="section-container">
             <div class="text-center reveal">
@@ -1194,9 +1155,7 @@
         </div>
     </section>
 
-    <!-- ============================
-         FOOTER
-    ============================ -->
+    <!-- Alt bilgi alanı -->
     <footer class="site-footer">
         <div class="footer-inner">
             <a class="footer-brand" href="#hero">
@@ -1212,17 +1171,17 @@
         </div>
     </footer>
 
-    <!-- Scripts -->
+    <!-- Bootstrap ve özel etkileşim scriptleri -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        // Navbar scroll effect
+        // Navbar kaydırma efekti
         const nav = document.getElementById('mainNav');
         window.addEventListener('scroll', () => {
             nav.classList.toggle('scrolled', window.scrollY > 40);
         });
 
-        // Scroll reveal
+        // Sayfa elemanları kaydırıldıkça belirme efekti
         const revealEls = document.querySelectorAll('.reveal');
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {

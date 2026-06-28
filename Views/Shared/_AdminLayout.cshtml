@@ -150,7 +150,7 @@
 </html>
 
 <style>
-    /* ===== BASE ===== */
+    /* Temel stiller */
     *, *::before, *::after { box-sizing: border-box; }
 
     .admin-dark-body {
@@ -159,7 +159,7 @@
         font-family: 'Inter', sans-serif !important;
     }
 
-    /* ===== TOP NAV ===== */
+    /* Üst navigasyon çubuğu */
     .admin-topnav {
         background: linear-gradient(135deg, #161b22 0%, #1c2128 100%) !important;
         border-bottom: 1px solid rgba(48, 54, 61, 0.8) !important;
@@ -204,7 +204,7 @@
     .greeting-text { color: #8b949e; font-size: 0.85rem; }
     .greeting-name { color: #58a6ff; font-size: 0.85rem; font-weight: 600; }
 
-    /* ===== USER BUTTON ===== */
+    /* Kullanıcı menüsü butonu */
     .admin-user-btn {
         display: flex !important;
         align-items: center;
@@ -228,7 +228,7 @@
     }
     .admin-user-btn:hover .user-avatar { border-color: #58a6ff; box-shadow: 0 0 0 4px rgba(56, 139, 253, 0.1); }
 
-    /* ===== DROPDOWN ===== */
+    /* Kullanıcı açılır menüsü */
     .admin-dropdown {
         background: #161b22 !important;
         border: 1px solid #30363d !important;
@@ -260,7 +260,7 @@
     .text-danger-item:hover { background: rgba(248, 81, 73, 0.1) !important; color: #f85149 !important; }
     .admin-divider { border-color: #30363d !important; margin: 4px 0 !important; }
 
-    /* ===== SIDENAV ===== */
+    /* Yan menü (Sidebar) */
     .admin-sidenav {
         background: linear-gradient(180deg, #161b22 0%, #0d1117 100%) !important;
         border-right: 1px solid #21262d !important;
@@ -341,7 +341,7 @@
     .icon-amber { background: rgba(228, 166, 15, 0.15); color: #e3b341; }
     .icon-green { background: rgba(46, 160, 67, 0.15); color: #56d364; }
 
-    /* ===== SIDEBAR FOOTER ===== */
+    /* Yan menü alt bilgisi */
     .admin-sidebar-footer {
         background: rgba(22, 27, 34, 0.8) !important;
         border-top: 1px solid #21262d !important;
@@ -351,7 +351,7 @@
     .footer-user { color: #e6edf3; font-size: 0.8rem; font-weight: 600; display: flex; align-items: center; gap: 6px; }
     .footer-user i { color: #58a6ff; }
 
-    /* ===== CONTENT ===== */
+    /* Ana içerik alanı */
     .admin-content-wrapper {
         display: flex;
         flex-direction: column;
@@ -364,7 +364,7 @@
         overflow-x: hidden;
     }
 
-    /* ===== FOOTER ===== */
+    /* Alt bilgi alanı */
     .admin-footer {
         background: #161b22 !important;
         border-top: 1px solid #21262d !important;
@@ -373,13 +373,13 @@
     .footer-copy { color: #6e7681; font-size: 0.8rem; }
     .footer-version { color: #8b949e; font-size: 0.8rem; display: flex; align-items: center; }
 
-    /* ===== SCROLLBAR ===== */
+    /* Kaydırma çubuğu */
     ::-webkit-scrollbar { width: 5px; height: 5px; }
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 10px; }
     ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.15); }
 
-    /* ===== GLOBAL PAGE ELEMENTS ===== */
+    /* Ortak sayfa elemanları */
     /* Page Header */
     .page-header {
         display: flex;
@@ -411,9 +411,13 @@
     .dark-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.5) !important; }
 
     /* Dark Table */
-    .dark-table { color: #c9d1d9 !important; }
+    .dark-table {
+        color: #c9d1d9 !important;
+        background-color: transparent !important;
+        border-color: #21262d !important;
+    }
     .dark-table thead tr th {
-        background: #21262d !important;
+        background-color: #21262d !important;
         color: #8b949e !important;
         font-size: 0.75rem !important;
         font-weight: 600 !important;
@@ -423,11 +427,21 @@
         padding: 12px 16px !important;
     }
     .dark-table tbody tr {
+        background-color: transparent !important;
         border-bottom: 1px solid rgba(33, 38, 45, 0.8) !important;
         transition: background 0.15s !important;
     }
-    .dark-table tbody tr:hover { background: rgba(56, 139, 253, 0.04) !important; }
-    .dark-table tbody tr td { color: #c9d1d9 !important; padding: 12px 16px !important; border: none !important; vertical-align: middle !important; }
+    .dark-table tbody tr:hover { background-color: rgba(56, 139, 253, 0.04) !important; }
+    .dark-table tbody tr td {
+        background-color: transparent !important;
+        color: #c9d1d9 !important;
+        padding: 12px 16px !important;
+        border: none !important;
+        vertical-align: middle !important;
+    }
+    .dark-table tr, .dark-table td, .dark-table th {
+        background-color: transparent !important;
+    }
 
     /* Dark Search */
     .dark-search-card {
