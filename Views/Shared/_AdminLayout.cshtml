@@ -1,128 +1,609 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Fitness Center Yönetim Paneli" />
     <title>@ViewData["Title"] - Fitness Panel</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="~/admintemplate/css/styles.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
 </head>
-<body class="sb-nav-fixed" style="background-color: #fff; color: black;">
+<body class="sb-nav-fixed admin-dark-body">
 
-    <nav class="sb-topnav navbar navbar-expand navbar-dark" style="background-color: #1e2533; border-bottom: 1px solid #2d3748;">
-        <a class="navbar-brand ps-3 fw-bold text-uppercase" asp-controller="Admin" asp-action="Index" style="font-size: 1rem; color: #38bdf8; letter-spacing: 0.5px;">
-            <i class="fa-solid fa-dumbbell me-2"></i>Fitness Admin
+    <!-- Top Navigation -->
+    <nav class="sb-topnav navbar navbar-expand admin-topnav">
+        <a class="navbar-brand ps-3 fw-bold text-uppercase admin-brand" asp-controller="Admin" asp-action="Index">
+            <div class="brand-icon-wrap">
+                <i class="fa-solid fa-dumbbell"></i>
+            </div>
+            <span>Fitness<span class="brand-accent">Admin</span></span>
         </a>
-        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0 text-white-50" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
 
-        <div class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0"></div>
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0 sidebar-toggle-btn" id="sidebarToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <div class="d-none d-md-flex align-items-center ms-auto me-0 me-md-3 my-2 my-md-0 topnav-search">
+            <div class="topnav-greeting">
+                <span class="greeting-text">Hoş geldin, </span>
+                <span class="greeting-name">Yönetici</span>
+            </div>
+        </div>
 
         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle btn border-0 text-white-50 px-3 rounded-pill" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fas fa-user-circle fa-lg"></i>
+                <a class="nav-link dropdown-toggle admin-user-btn" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <div class="user-avatar">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
                 </a>
-                <ul class="dropdown-menu dropdown-menu-end border-0 shadow dropdown-menu-dark" style="background-color: #1e2533; border: 1px solid #2d3748;" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item py-2" href="#!"><i class="fa-solid fa-gear me-2 text-info"></i>Ayarlar</a></li>
-                    <li><hr class="dropdown-divider my-1" style="border-color: #2d3748;" /></li>
-                    <li><a class="dropdown-item py-2 text-danger" href="/"><i class="fa-solid fa-right-from-bracket me-2"></i>Çıkış Yap</a></li>
+                <ul class="dropdown-menu dropdown-menu-end admin-dropdown" aria-labelledby="navbarDropdown">
+                    <li class="dropdown-header-item">
+                        <div class="d-flex align-items-center gap-2 p-1">
+                            <div class="dropdown-avatar">
+                                <i class="fas fa-user-shield"></i>
+                            </div>
+                            <div>
+                                <div class="dropdown-username">Admin</div>
+                                <div class="dropdown-role">Sistem Yöneticisi</div>
+                            </div>
+                        </div>
+                    </li>
+                    <li><hr class="dropdown-divider admin-divider" /></li>
+                    <li><a class="dropdown-item admin-dropdown-item" href="#!"><i class="fa-solid fa-gear me-2"></i>Ayarlar</a></li>
+                    <li><hr class="dropdown-divider admin-divider" /></li>
+                    <li><a class="dropdown-item admin-dropdown-item text-danger-item" href="/"><i class="fa-solid fa-right-from-bracket me-2"></i>Çıkış Yap</a></li>
                 </ul>
             </li>
         </ul>
     </nav>
 
     <div id="layoutSidenav">
+        <!-- Sidebar -->
         <div id="layoutSidenav_nav">
-            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion" style="background-color: #1e2533; border-right: 1px solid #2d3748;">
+            <nav class="sb-sidenav accordion admin-sidenav" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
-                    <div class="nav px-2">
+                    <div class="nav px-2 py-2">
 
-                        <div class="sidebar-header-box p-3 my-3 rounded-3" style="background-color: #242f41; border: 1px solid #2d3748;">
-                            <h6 class="fw-bold m-0 text-info" style="font-size: 0.9rem;">Yönetim Paneli</h6>
-                            <p class="m-0 text-white-50 mt-1" style="font-size: 0.75rem; line-height: 1.3;">Sistem operasyonları ve canlı metrikler.</p>
+                        <!-- Sidebar Header Card -->
+                        <div class="sidebar-info-card">
+                            <div class="sidebar-info-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="sidebar-info-text">
+                                <h6 class="sidebar-info-title">Yönetim Paneli</h6>
+                                <p class="sidebar-info-desc">Sistem operasyonları ve canlı metrikler.</p>
+                            </div>
                         </div>
 
-                        <div class="sb-sidenav-menu-heading text-uppercase text-muted fw-bold ps-2" style="font-size: 0.65rem; letter-spacing: 1px;">Modüller</div>
+                        <div class="sidebar-section-label">Modüller</div>
 
-                        <a class="nav-link rounded px-3 py-2 mb-1 text-white-50 d-flex align-items-center" asp-controller="Rapor" asp-action="Index">
-                            <div class="sb-nav-link-icon text-info me-2"><i class="fas fa-chart-line fa-fw"></i></div>
+                        <a class="nav-link admin-nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Rapor" ? "active" : "")" asp-controller="Rapor" asp-action="Index">
+                            <div class="admin-nav-icon icon-cyan"><i class="fas fa-chart-line fa-fw"></i></div>
                             <span>Rapor Sayfası</span>
+                            <i class="fas fa-chevron-right admin-nav-arrow"></i>
                         </a>
 
-                        <a class="nav-link rounded px-3 py-2 mb-1 text-white-50 d-flex align-items-center" asp-controller="Uye" asp-action="Index">
-                            <div class="sb-nav-link-icon text-primary me-2"><i class="fas fa-users fa-fw"></i></div>
+                        <a class="nav-link admin-nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Uye" ? "active" : "")" asp-controller="Uye" asp-action="Index">
+                            <div class="admin-nav-icon icon-blue"><i class="fas fa-users fa-fw"></i></div>
                             <span>Üye İşlemleri</span>
+                            <i class="fas fa-chevron-right admin-nav-arrow"></i>
                         </a>
 
-                        <a class="nav-link rounded px-3 py-2 mb-1 text-white-50 d-flex align-items-center" asp-controller="Antrenor" asp-action="Index">
-                            <div class="sb-nav-link-icon text-purple me-2"><i class="fas fa-dumbbell fa-fw"></i></div>
+                        <a class="nav-link admin-nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Antrenor" ? "active" : "")" asp-controller="Antrenor" asp-action="Index">
+                            <div class="admin-nav-icon icon-purple"><i class="fas fa-dumbbell fa-fw"></i></div>
                             <span>Antrenör İşlemleri</span>
+                            <i class="fas fa-chevron-right admin-nav-arrow"></i>
                         </a>
 
-                        <a class="nav-link rounded px-3 py-2 mb-1 text-white-50 d-flex align-items-center" asp-controller="Salon" asp-action="Index">
-                            <div class="sb-nav-link-icon text-warning me-2"><i class="fas fa-building fa-fw"></i></div>
+                        <a class="nav-link admin-nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Salon" ? "active" : "")" asp-controller="Salon" asp-action="Index">
+                            <div class="admin-nav-icon icon-amber"><i class="fas fa-building fa-fw"></i></div>
                             <span>Salon İşlemleri</span>
+                            <i class="fas fa-chevron-right admin-nav-arrow"></i>
                         </a>
 
-                        <a class="nav-link rounded px-3 py-2 mb-1 text-white-50 d-flex align-items-center" asp-controller="Supplement" asp-action="Index">
-                            <div class="sb-nav-link-icon text-success me-2"><i class="fas fa-capsules fa-fw"></i></div>
+                        <a class="nav-link admin-nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Supplement" ? "active" : "")" asp-controller="Supplement" asp-action="Index">
+                            <div class="admin-nav-icon icon-green"><i class="fas fa-capsules fa-fw"></i></div>
                             <span>Supplement İşlemleri</span>
+                            <i class="fas fa-chevron-right admin-nav-arrow"></i>
                         </a>
 
                     </div>
                 </div>
-                <div class="sb-sidenav-footer text-white-50" style="background-color: #161b26; border-top: 1px solid #2d3748;">
-                    <div class="small opacity-50">Giriş Yapan:</div>
-                    <span class="text-white fw-semibold" style="font-size: 0.8rem;"><i class="fa-solid fa-user-shield text-info me-1"></i> Yönetici / Admin</span>
+
+                <div class="sb-sidenav-footer admin-sidebar-footer">
+                    <div class="footer-label">Giriş Yapan:</div>
+                    <div class="footer-user">
+                        <i class="fa-solid fa-user-shield me-1"></i>
+                        <span>Yönetici / Admin</span>
+                    </div>
                 </div>
             </nav>
         </div>
 
-        <div id="layoutSidenav_content" class="d-flex flex-column" style="height: calc(100vh - 56px); overflow: hidden;">
-            <main class="flex-grow-1" style="overflow-y: auto; overflow-x: hidden; height: 100%;">
-                <div class="container-fluid px-4 pt-3">
+        <!-- Main Content -->
+        <div id="layoutSidenav_content" class="admin-content-wrapper">
+            <main class="admin-main">
+                <div class="container-fluid px-4 pt-4">
                     @RenderBody()
                 </div>
             </main>
-            <footer class="py-3 mt-auto border-top text-white-50" style="background-color: #1e2533; border-color: #2d3748 !important;">
+            <footer class="admin-footer">
                 <div class="container-fluid px-4">
                     <div class="d-flex align-items-center justify-content-between small">
-                        <div>Copyright &copy; Fitness Center 2026</div>
-                        <div class="opacity-70">v1.2.0 Canlı Panel</div>
+                        <div class="footer-copy">Copyright &copy; Fitness Center 2026</div>
+                        <div class="footer-version"><i class="fas fa-circle text-success me-1" style="font-size:0.5rem;"></i>v1.2.0 Canlı Panel</div>
                     </div>
                 </div>
             </footer>
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/admintemplate/js/scripts.js"></script>
     <script src="~/admintemplate/js/datatables-simple-demo.js"></script>
 </body>
 </html>
 
 <style>
-    .sb-sidenav-dark .sb-sidenav-menu .nav .nav-link:hover {
-    color: #ffffff !important;
-    background-color: rgba(255, 255, 255, 0.05);
+    /* ===== BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; }
+
+    .admin-dark-body {
+        background-color: #0d1117 !important;
+        color: #c9d1d9 !important;
+        font-family: 'Inter', sans-serif !important;
     }
 
-    .text-purple {
-    color: #c084fc !important;
+    /* ===== TOP NAV ===== */
+    .admin-topnav {
+        background: linear-gradient(135deg, #161b22 0%, #1c2128 100%) !important;
+        border-bottom: 1px solid rgba(48, 54, 61, 0.8) !important;
+        box-shadow: 0 1px 20px rgba(0, 0, 0, 0.4) !important;
+        backdrop-filter: blur(20px);
+        height: 64px;
     }
 
-    ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+    .admin-brand {
+        font-size: 1rem !important;
+        letter-spacing: 1px !important;
+        color: #e6edf3 !important;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 10px;
     }
 
-    ::-webkit-scrollbar-track {
-    background: transparent;
+    .brand-icon-wrap {
+        width: 34px;
+        height: 34px;
+        background: linear-gradient(135deg, #238636, #2ea043);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.9rem;
+        color: white;
+        box-shadow: 0 4px 12px rgba(35, 134, 54, 0.4);
     }
 
-    ::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
+    .brand-accent { color: #58a6ff; }
+
+    .sidebar-toggle-btn {
+        color: #8b949e !important;
+        border: none !important;
+        transition: color 0.2s;
     }
+    .sidebar-toggle-btn:hover { color: #e6edf3 !important; }
+
+    .topnav-greeting { display: flex; gap: 4px; align-items: center; }
+    .greeting-text { color: #8b949e; font-size: 0.85rem; }
+    .greeting-name { color: #58a6ff; font-size: 0.85rem; font-weight: 600; }
+
+    /* ===== USER BUTTON ===== */
+    .admin-user-btn {
+        display: flex !important;
+        align-items: center;
+        color: #8b949e !important;
+        padding: 0 !important;
+    }
+    .admin-user-btn::after { display: none !important; }
+
+    .user-avatar {
+        width: 36px;
+        height: 36px;
+        background: linear-gradient(135deg, #1f6feb, #388bfd);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 0.85rem;
+        border: 2px solid rgba(56, 139, 253, 0.3);
+        transition: all 0.2s;
+    }
+    .admin-user-btn:hover .user-avatar { border-color: #58a6ff; box-shadow: 0 0 0 4px rgba(56, 139, 253, 0.1); }
+
+    /* ===== DROPDOWN ===== */
+    .admin-dropdown {
+        background: #161b22 !important;
+        border: 1px solid #30363d !important;
+        border-radius: 12px !important;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5) !important;
+        padding: 8px !important;
+        min-width: 220px !important;
+        margin-top: 8px !important;
+    }
+    .dropdown-header-item { padding: 8px 4px; }
+    .dropdown-avatar {
+        width: 38px; height: 38px;
+        background: linear-gradient(135deg, #1f6feb, #388bfd);
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        color: white; font-size: 0.9rem;
+    }
+    .dropdown-username { color: #e6edf3; font-weight: 600; font-size: 0.85rem; }
+    .dropdown-role { color: #8b949e; font-size: 0.75rem; }
+
+    .admin-dropdown-item {
+        color: #c9d1d9 !important;
+        border-radius: 8px !important;
+        padding: 8px 12px !important;
+        font-size: 0.875rem !important;
+        transition: all 0.15s !important;
+    }
+    .admin-dropdown-item:hover { background: rgba(56, 139, 253, 0.1) !important; color: #58a6ff !important; }
+    .text-danger-item:hover { background: rgba(248, 81, 73, 0.1) !important; color: #f85149 !important; }
+    .admin-divider { border-color: #30363d !important; margin: 4px 0 !important; }
+
+    /* ===== SIDENAV ===== */
+    .admin-sidenav {
+        background: linear-gradient(180deg, #161b22 0%, #0d1117 100%) !important;
+        border-right: 1px solid #21262d !important;
+    }
+
+    .sidebar-info-card {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        background: rgba(56, 139, 253, 0.05);
+        border: 1px solid rgba(56, 139, 253, 0.1);
+        border-radius: 12px;
+        padding: 12px 14px;
+        margin: 8px 4px 16px;
+    }
+    .sidebar-info-icon {
+        width: 32px; height: 32px;
+        background: linear-gradient(135deg, #1f6feb, #388bfd);
+        border-radius: 8px;
+        display: flex; align-items: center; justify-content: center;
+        color: white; font-size: 0.8rem; flex-shrink: 0;
+    }
+    .sidebar-info-title { color: #58a6ff; font-size: 0.8rem; font-weight: 700; margin: 0 0 2px; }
+    .sidebar-info-desc { color: #8b949e; font-size: 0.7rem; margin: 0; line-height: 1.4; }
+
+    .sidebar-section-label {
+        color: #6e7681;
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        padding: 4px 12px 8px;
+    }
+
+    .admin-nav-link {
+        display: flex !important;
+        align-items: center;
+        gap: 10px;
+        color: #8b949e !important;
+        border-radius: 10px !important;
+        padding: 10px 12px !important;
+        margin-bottom: 2px;
+        text-decoration: none;
+        transition: all 0.2s ease !important;
+        font-size: 0.875rem;
+        font-weight: 500;
+        position: relative;
+    }
+    .admin-nav-link:hover {
+        color: #e6edf3 !important;
+        background: rgba(255, 255, 255, 0.05) !important;
+    }
+    .admin-nav-link.active {
+        color: #58a6ff !important;
+        background: rgba(56, 139, 253, 0.1) !important;
+        border: 1px solid rgba(56, 139, 253, 0.2) !important;
+    }
+    .admin-nav-arrow {
+        margin-left: auto;
+        font-size: 0.65rem;
+        opacity: 0;
+        transition: opacity 0.2s, transform 0.2s;
+    }
+    .admin-nav-link:hover .admin-nav-arrow,
+    .admin-nav-link.active .admin-nav-arrow { opacity: 1; transform: translateX(2px); }
+
+    .admin-nav-icon {
+        width: 30px; height: 30px;
+        border-radius: 8px;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 0.8rem; flex-shrink: 0;
+        transition: transform 0.2s;
+    }
+    .admin-nav-link:hover .admin-nav-icon { transform: scale(1.1); }
+    .icon-cyan  { background: rgba(88, 166, 255, 0.15); color: #58a6ff; }
+    .icon-blue  { background: rgba(31, 111, 235, 0.15); color: #79c0ff; }
+    .icon-purple { background: rgba(188, 140, 255, 0.15); color: #bc8cff; }
+    .icon-amber { background: rgba(228, 166, 15, 0.15); color: #e3b341; }
+    .icon-green { background: rgba(46, 160, 67, 0.15); color: #56d364; }
+
+    /* ===== SIDEBAR FOOTER ===== */
+    .admin-sidebar-footer {
+        background: rgba(22, 27, 34, 0.8) !important;
+        border-top: 1px solid #21262d !important;
+        padding: 12px 16px !important;
+    }
+    .footer-label { color: #6e7681; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+    .footer-user { color: #e6edf3; font-size: 0.8rem; font-weight: 600; display: flex; align-items: center; gap: 6px; }
+    .footer-user i { color: #58a6ff; }
+
+    /* ===== CONTENT ===== */
+    .admin-content-wrapper {
+        display: flex;
+        flex-direction: column;
+        min-height: calc(100vh - 64px);
+        background: #0d1117;
+    }
+    .admin-main {
+        flex: 1;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    /* ===== FOOTER ===== */
+    .admin-footer {
+        background: #161b22 !important;
+        border-top: 1px solid #21262d !important;
+        padding: 12px 0 !important;
+    }
+    .footer-copy { color: #6e7681; font-size: 0.8rem; }
+    .footer-version { color: #8b949e; font-size: 0.8rem; display: flex; align-items: center; }
+
+    /* ===== SCROLLBAR ===== */
+    ::-webkit-scrollbar { width: 5px; height: 5px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 10px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.15); }
+
+    /* ===== GLOBAL PAGE ELEMENTS ===== */
+    /* Page Header */
+    .page-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 24px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #21262d;
+    }
+    .page-title {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: #e6edf3;
+        margin: 0 0 4px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .page-subtitle { color: #8b949e; font-size: 0.85rem; margin: 0; }
+
+    /* Dark Cards */
+    .dark-card {
+        background: #161b22 !important;
+        border: 1px solid #21262d !important;
+        border-radius: 12px !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.3) !important;
+        transition: box-shadow 0.2s;
+    }
+    .dark-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.5) !important; }
+
+    /* Dark Table */
+    .dark-table { color: #c9d1d9 !important; }
+    .dark-table thead tr th {
+        background: #21262d !important;
+        color: #8b949e !important;
+        font-size: 0.75rem !important;
+        font-weight: 600 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.8px !important;
+        border-bottom: 1px solid #30363d !important;
+        padding: 12px 16px !important;
+    }
+    .dark-table tbody tr {
+        border-bottom: 1px solid rgba(33, 38, 45, 0.8) !important;
+        transition: background 0.15s !important;
+    }
+    .dark-table tbody tr:hover { background: rgba(56, 139, 253, 0.04) !important; }
+    .dark-table tbody tr td { color: #c9d1d9 !important; padding: 12px 16px !important; border: none !important; vertical-align: middle !important; }
+
+    /* Dark Search */
+    .dark-search-card {
+        background: #161b22;
+        border: 1px solid #21262d;
+        border-radius: 10px;
+        padding: 12px 16px;
+        margin-bottom: 16px;
+    }
+    .dark-input-group .input-group-text {
+        background: #21262d !important;
+        border: 1px solid #30363d !important;
+        border-right: none !important;
+        color: #8b949e !important;
+    }
+    .dark-input-group .form-control {
+        background: #21262d !important;
+        border: 1px solid #30363d !important;
+        border-left: none !important;
+        color: #c9d1d9 !important;
+        font-size: 0.875rem !important;
+    }
+    .dark-input-group .form-control:focus {
+        box-shadow: none !important;
+        background: #1c2128 !important;
+        border-color: #388bfd !important;
+    }
+    .dark-input-group .form-control::placeholder { color: #6e7681 !important; }
+
+    /* Avatar circles */
+    .avatar-dark {
+        width: 36px; height: 36px; min-width: 36px;
+        border-radius: 10px;
+        display: flex; align-items: center; justify-content: center;
+        font-weight: 700; font-size: 0.8rem;
+    }
+
+    /* Export Buttons */
+    .export-btn-pdf {
+        background: rgba(248, 81, 73, 0.1) !important;
+        border: 1px solid rgba(248, 81, 73, 0.3) !important;
+        color: #f85149 !important;
+        border-radius: 8px !important;
+        font-size: 0.8rem !important;
+        padding: 6px 14px !important;
+        transition: all 0.2s !important;
+    }
+    .export-btn-pdf:hover { background: rgba(248, 81, 73, 0.2) !important; }
+
+    .export-btn-excel {
+        background: rgba(46, 160, 67, 0.1) !important;
+        border: 1px solid rgba(46, 160, 67, 0.3) !important;
+        color: #56d364 !important;
+        border-radius: 8px !important;
+        font-size: 0.8rem !important;
+        padding: 6px 14px !important;
+        transition: all 0.2s !important;
+    }
+    .export-btn-excel:hover { background: rgba(46, 160, 67, 0.2) !important; }
+
+    /* Dark Form */
+    .dark-form-control {
+        background: #21262d !important;
+        border: 1px solid #30363d !important;
+        color: #c9d1d9 !important;
+        border-radius: 8px !important;
+        padding: 10px 14px !important;
+        font-size: 0.875rem !important;
+        transition: border-color 0.2s, box-shadow 0.2s !important;
+    }
+    .dark-form-control:focus {
+        background: #1c2128 !important;
+        border-color: #388bfd !important;
+        color: #e6edf3 !important;
+        box-shadow: 0 0 0 3px rgba(56, 139, 253, 0.15) !important;
+    }
+    .dark-form-control::placeholder { color: #6e7681 !important; }
+    .dark-form-label {
+        color: #8b949e !important;
+        font-size: 0.8rem !important;
+        font-weight: 600 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.5px !important;
+        margin-bottom: 6px !important;
+    }
+    select.dark-form-control option { background: #21262d; color: #c9d1d9; }
+
+    /* Form Card */
+    .form-card {
+        background: #161b22;
+        border: 1px solid #21262d;
+        border-radius: 16px;
+        padding: 32px;
+        max-width: 600px;
+    }
+
+    /* Action Buttons */
+    .btn-dark-edit {
+        background: rgba(227, 179, 65, 0.1) !important;
+        border: 1px solid rgba(227, 179, 65, 0.25) !important;
+        color: #e3b341 !important;
+        border-radius: 7px !important;
+        font-size: 0.78rem !important;
+        padding: 5px 12px !important;
+        transition: all 0.2s !important;
+        white-space: nowrap;
+    }
+    .btn-dark-edit:hover { background: rgba(227, 179, 65, 0.2) !important; }
+
+    .btn-dark-delete {
+        background: rgba(248, 81, 73, 0.1) !important;
+        border: 1px solid rgba(248, 81, 73, 0.25) !important;
+        color: #f85149 !important;
+        border-radius: 7px !important;
+        font-size: 0.78rem !important;
+        padding: 5px 12px !important;
+        transition: all 0.2s !important;
+        white-space: nowrap;
+    }
+    .btn-dark-delete:hover { background: rgba(248, 81, 73, 0.2) !important; }
+
+    /* Badges */
+    .badge-dark-age {
+        background: rgba(56, 139, 253, 0.1);
+        border: 1px solid rgba(56, 139, 253, 0.2);
+        color: #79c0ff;
+        border-radius: 6px;
+        padding: 4px 10px;
+        font-size: 0.78rem;
+        font-weight: 600;
+    }
+    .badge-dark-exp {
+        background: rgba(188, 140, 255, 0.1);
+        border: 1px solid rgba(188, 140, 255, 0.2);
+        color: #d2a8ff;
+        border-radius: 6px;
+        padding: 4px 10px;
+        font-size: 0.78rem;
+        font-weight: 600;
+    }
+    .badge-dark-price {
+        background: rgba(46, 160, 67, 0.1);
+        border: 1px solid rgba(46, 160, 67, 0.2);
+        color: #56d364;
+        border-radius: 6px;
+        padding: 4px 10px;
+        font-size: 0.82rem;
+        font-weight: 700;
+    }
+    .badge-dark-salon {
+        background: rgba(228, 166, 15, 0.1);
+        border: 1px solid rgba(228, 166, 15, 0.2);
+        color: #e3b341;
+        border-radius: 6px;
+        padding: 4px 10px;
+        font-size: 0.78rem;
+        font-weight: 600;
+    }
+
+    /* Delete page */
+    .delete-card {
+        background: #161b22;
+        border: 1px solid rgba(248, 81, 73, 0.2);
+        border-radius: 16px;
+        padding: 28px;
+        max-width: 500px;
+    }
+    .delete-info-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 0;
+        border-bottom: 1px solid #21262d;
+        font-size: 0.875rem;
+    }
+    .delete-info-row:last-of-type { border-bottom: none; }
+    .delete-info-label { color: #8b949e; font-weight: 500; }
+    .delete-info-value { color: #e6edf3; font-weight: 600; }
 </style>

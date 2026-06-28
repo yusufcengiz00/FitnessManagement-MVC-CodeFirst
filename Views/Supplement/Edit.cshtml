@@ -1,34 +1,47 @@
-﻿@model Project1.Models.Supplement
+@model Project1.Models.Supplement
 
 @{
     ViewData["Title"] = "Supplement Düzenle";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml"; // Admin layoutunu bağladık
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Supplement Güncelle</h1>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-            <input type="hidden" asp-for="SupplementID" />
-            <input type="hidden" asp-for="SalonID" />
-
-            <div class="form-group mb-3">
-                <label class="control-label">Supplement Adı</label>
-                <input asp-for="SupplementAdi" class="form-control" />
+<div class="page-header">
+    <div>
+        <h1 class="page-title">
+            <div class="admin-nav-icon icon-amber" style="width:38px;height:38px;border-radius:10px;font-size:1rem;">
+                <i class="fa-solid fa-pen-to-square"></i>
             </div>
-
-            <div class="form-group mb-3">
-                <label class="control-label">Fiyatı</label>
-                <input asp-for="SupplementFiyati" class="form-control" />
-            </div>
-
-            <div class="form-group">
-                <input type="submit" value="Kaydet" class="btn btn-primary" />
-                <a asp-action="Index" class="btn btn-secondary">Listeye Dön</a>
-            </div>
-        </form>
+            Supplement Güncelle
+        </h1>
+        <p class="page-subtitle">Supplement bilgilerini düzenleyin ve kaydedin.</p>
     </div>
+    <a asp-action="Index" class="btn" style="background:rgba(139,148,158,0.1);border:1px solid #30363d;color:#8b949e;border-radius:8px;font-size:0.85rem;padding:8px 16px;">
+        <i class="fa-solid fa-arrow-left me-2"></i>Listeye Dön
+    </a>
+</div>
+
+<div class="form-card">
+    <form asp-action="Edit" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+        <input type="hidden" asp-for="SupplementID" />
+        <input type="hidden" asp-for="SalonID" />
+
+        <div class="mb-4">
+            <label class="dark-form-label">Supplement Adı</label>
+            <input asp-for="SupplementAdi" class="form-control dark-form-control" placeholder="Ürün adını girin..." />
+        </div>
+
+        <div class="mb-4">
+            <label class="dark-form-label">Fiyatı</label>
+            <input asp-for="SupplementFiyati" class="form-control dark-form-control" placeholder="Ürün fiyatını girin..." />
+        </div>
+
+        <div class="d-flex gap-2 mt-4 pt-2" style="border-top:1px solid #21262d;">
+            <input type="submit" value="Güncelle" class="btn" style="background:linear-gradient(135deg,#1f6feb,#388bfd);color:white;border:none;border-radius:8px;padding:10px 24px;font-weight:600;font-size:0.875rem;" />
+            <a asp-action="Index" class="btn" style="background:rgba(139,148,158,0.1);border:1px solid #30363d;color:#8b949e;border-radius:8px;padding:10px 20px;font-size:0.875rem;">
+                Vazgeç
+            </a>
+        </div>
+    </form>
 </div>

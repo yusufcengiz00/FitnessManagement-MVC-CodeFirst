@@ -1,4 +1,4 @@
-﻿@{
+@{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -8,49 +8,61 @@
     ViewData["Title"] = "Yeni Antrenör Ekle";
 }
 
-<div class="container mt-4">
-    <h2>Yeni Antrenör Kayıt Formu</h2>
-    <hr />
-
-    <div class="row">
-        <div class="col-md-6">
-            <form asp-action="Create" method="post">
-
-                <div class="mb-3">
-                    <label class="form-label">Antrenör Kullanıcı Adı</label>
-                    <input asp-for="userName" class="form-control" />
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Yaş</label>
-                    <input asp-for="Yas" type="number" class="form-control" />
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Tecrübe Yılı</label>
-                    <input asp-for="TecrübeYili" type="number" class="form-control" />
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Hangi Üyenin Özel Koçu?</label>
-                    <select asp-for="UyeID" class="form-control">
-                        <option value="">-- Lütfen Bir Üye Seçin --</option>
-
-                        @if (ViewBag.uyes != null)
-                        {
-                            foreach (var uye in ViewBag.uyes)
-                            {
-                                // Değer olarak SalonID'yi alacak, ekranda ise SalonAdi yazacak
-                                <option value="@uye.UyeID">@uye.UyeAdi</option>
-                            }
-                        }
-                    </select>
-                </div>
-
-                <button type="submit" class="btn btn-success">Kaydet</button>
-                <a asp-action="Index" class="btn btn-secondary">Listeye Dön</a>
-
-            </form>
-        </div>
+<div class="page-header">
+    <div>
+        <h1 class="page-title">
+            <div class="admin-nav-icon icon-purple" style="width:38px;height:38px;border-radius:10px;font-size:1rem;">
+                <i class="fa-solid fa-user-plus"></i>
+            </div>
+            Yeni Antrenör Ekle
+        </h1>
+        <p class="page-subtitle">Sisteme yeni bir antrenör kaydı oluşturun.</p>
     </div>
+    <a asp-action="Index" class="btn" style="background:rgba(139,148,158,0.1);border:1px solid #30363d;color:#8b949e;border-radius:8px;font-size:0.85rem;padding:8px 16px;">
+        <i class="fa-solid fa-arrow-left me-2"></i>Listeye Dön
+    </a>
+</div>
+
+<div class="form-card">
+    <form asp-action="Create" method="post">
+
+        <div class="mb-4">
+            <label class="dark-form-label">Antrenör Kullanıcı Adı</label>
+            <input asp-for="userName" class="form-control dark-form-control" placeholder="Kullanıcı adını girin..." />
+        </div>
+
+        <div class="mb-4">
+            <label class="dark-form-label">Yaş</label>
+            <input asp-for="Yas" type="number" class="form-control dark-form-control" placeholder="Antrenörün yaşını girin..." />
+        </div>
+
+        <div class="mb-4">
+            <label class="dark-form-label">Tecrübe Yılı</label>
+            <input asp-for="TecrübeYili" type="number" class="form-control dark-form-control" placeholder="Kaç yıllık tecrübesi var?" />
+        </div>
+
+        <div class="mb-4">
+            <label class="dark-form-label">Hangi Üyenin Özel Koçu?</label>
+            <select asp-for="UyeID" class="form-control dark-form-control">
+                <option value="">— Lütfen Bir Üye Seçin —</option>
+                @if (ViewBag.uyes != null)
+                {
+                    foreach (var uye in ViewBag.uyes)
+                    {
+                        <option value="@uye.UyeID">@uye.UyeAdi</option>
+                    }
+                }
+            </select>
+        </div>
+
+        <div class="d-flex gap-2 mt-4 pt-2" style="border-top:1px solid #21262d;">
+            <button type="submit" class="btn" style="background:linear-gradient(135deg,#6e40c9,#8957e5);color:white;border:none;border-radius:8px;padding:10px 24px;font-weight:600;font-size:0.875rem;">
+                <i class="fa-solid fa-floppy-disk me-2"></i>Kaydet
+            </button>
+            <a asp-action="Index" class="btn" style="background:rgba(139,148,158,0.1);border:1px solid #30363d;color:#8b949e;border-radius:8px;padding:10px 20px;font-size:0.875rem;">
+                Vazgeç
+            </a>
+        </div>
+
+    </form>
 </div>

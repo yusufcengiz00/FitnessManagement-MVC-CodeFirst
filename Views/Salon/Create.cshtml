@@ -1,4 +1,4 @@
-﻿@{
+@{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -8,28 +8,42 @@
     ViewData["Title"] = "Yeni Salon Ekle";
 }
 
-<div class="container mt-4">
-    <h2>Yeni Salon Kayıt Formu</h2>
-    <hr />
-
-    <div class="row">
-        <div class="col-md-6">
-            <form asp-action="Create" method="post">
-
-                <div class="mb-3">
-                    <label class="form-label">Salon Adı</label>
-                    <input asp-for="SalonAdi" class="form-control" />
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Salon Adresi</label>
-                    <input asp-for="SalonAdres" class="form-control" />
-                </div>
-
-                <button type="submit" class="btn btn-success">Kaydet</button>
-                <a asp-action="Index" class="btn btn-secondary">Listeye Dön</a>
-
-            </form>
-        </div>
+<div class="page-header">
+    <div>
+        <h1 class="page-title">
+            <div class="admin-nav-icon icon-amber" style="width:38px;height:38px;border-radius:10px;font-size:1rem;">
+                <i class="fa-solid fa-house-chimney-medical"></i>
+            </div>
+            Yeni Salon Ekle
+        </h1>
+        <p class="page-subtitle">Sisteme yeni bir salon / şube kaydı oluşturun.</p>
     </div>
+    <a asp-action="Index" class="btn" style="background:rgba(139,148,158,0.1);border:1px solid #30363d;color:#8b949e;border-radius:8px;font-size:0.85rem;padding:8px 16px;">
+        <i class="fa-solid fa-arrow-left me-2"></i>Listeye Dön
+    </a>
+</div>
+
+<div class="form-card">
+    <form asp-action="Create" method="post">
+
+        <div class="mb-4">
+            <label class="dark-form-label">Salon Adı</label>
+            <input asp-for="SalonAdi" class="form-control dark-form-control" placeholder="Salonun adını girin..." />
+        </div>
+
+        <div class="mb-4">
+            <label class="dark-form-label">Salon Adresi</label>
+            <input asp-for="SalonAdres" class="form-control dark-form-control" placeholder="Salonun tam adresini girin..." />
+        </div>
+
+        <div class="d-flex gap-2 mt-4 pt-2" style="border-top:1px solid #21262d;">
+            <button type="submit" class="btn" style="background:linear-gradient(135deg,#b08c07,#e3b341);color:#0d1117;border:none;border-radius:8px;padding:10px 24px;font-weight:700;font-size:0.875rem;">
+                <i class="fa-solid fa-floppy-disk me-2"></i>Kaydet
+            </button>
+            <a asp-action="Index" class="btn" style="background:rgba(139,148,158,0.1);border:1px solid #30363d;color:#8b949e;border-radius:8px;padding:10px 20px;font-size:0.875rem;">
+                Vazgeç
+            </a>
+        </div>
+
+    </form>
 </div>

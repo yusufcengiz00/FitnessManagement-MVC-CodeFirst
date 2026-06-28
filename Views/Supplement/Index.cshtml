@@ -1,152 +1,115 @@
-﻿@{
+@{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
     ViewData["Title"] = "Supplement Listesi";
 }
 
 @model IEnumerable<Project1.Models.Supplement>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
-<div class="container py-5">
-
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <div>
-            <h2 class="fw-bold text-dark m-0">
-                <i class="fa-solid fa-bottle-droplet text-success me-2" style="color:ghostwhite"></i>Supplement Listesi
-            </h2>
-            <small class="text-muted" style="color:ghostwhite">Stoktaki takviye ürünleri, fiyatları ve ürün yönetimini yapın.</small>
-        </div>
-        <a asp-action="Create" class="btn btn-success btn-lg shadow-sm rounded-pill px-4">
+<div class="page-header">
+    <div>
+        <h1 class="page-title">
+            <div class="admin-nav-icon icon-green" style="width:38px;height:38px;border-radius:10px;font-size:1rem;">
+                <i class="fa-solid fa-capsules"></i>
+            </div>
+            Supplement Listesi
+        </h1>
+        <p class="page-subtitle">Stoktaki takviye ürünleri, fiyatları ve ürün yönetimini yapın.</p>
+    </div>
+    <div class="d-flex align-items-center gap-2">
+        <a asp-controller="Supplement" asp-action="ExportToPdf" class="btn export-btn-pdf">
+            <i class="fa fa-file-pdf me-1"></i>PDF
+        </a>
+        <a asp-controller="Supplement" asp-action="ExportToExcel" class="btn export-btn-excel">
+            <i class="fa fa-file-excel me-1"></i>Excel
+        </a>
+        <a asp-action="Create" class="btn" style="background:linear-gradient(135deg,#1a7f37,#2ea043);color:white;border:none;border-radius:8px;padding:9px 18px;font-weight:600;font-size:0.875rem;">
             <i class="fa-solid fa-plus me-2"></i>Yeni Supplement Ekle
         </a>
     </div>
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <a asp-controller="Supplement" asp-action="ExportToPdf" class="btn btn-danger">
-            <i class="fa fa-file-pdf"></i> PDF Olarak İndir
-        </a>
-        <a asp-controller="Supplement" asp-action="ExportToExcel" class="btn btn-success">
-            <i class="fa fa-file-excel"></i> Excel Olarak İndir
-        </a>
-    </div>
+</div>
 
-
-    <div class="card border-0 shadow-sm rounded-3 mb-4">
-        <div class="card-body p-3 bg-light rounded-3">
-            <form asp-action="Index" method="get">
-                <div class="row g-2 align-items-center">
-                    <div class="col-12 col-md-5 col-lg-4">
-                        <div class="input-group">
-                            <span class="input-group-text bg-white border-end-0 text-muted">
-                                <i class="fa-solid fa-magnifying-glass"></i>
-                            </span>
-                            <input type="text" name="searchString" class="form-control border-start-0 ps-0"
-                                   placeholder="Supplement ara..." value="@ViewBag.CurrentFilter" />
-
-                            <button class="btn btn-success px-4" type="submit">Ara</button>
-
-                            @if (!String.IsNullOrEmpty(ViewBag.CurrentFilter))
-                            {
-                                <a asp-action="Index" class="btn btn-secondary"><i class="fa-solid fa-xmark"></i></a>
-                            }
-                        </div>
-                    </div>
-                </div>
-            </form>
+<div class="dark-search-card">
+    <form asp-action="Index" method="get">
+        <div class="d-flex align-items-center gap-2">
+            <div class="input-group dark-input-group" style="max-width:420px;">
+                <span class="input-group-text">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </span>
+                <input type="text" name="searchString" class="form-control"
+                       placeholder="Supplement ara..." value="@ViewBag.CurrentFilter" />
+                <button class="btn" type="submit" style="background:rgba(46,160,67,0.1);border:1px solid rgba(46,160,67,0.25);color:#56d364;font-size:0.85rem;padding:0 16px;">
+                    Ara
+                </button>
+                @if (!String.IsNullOrEmpty(ViewBag.CurrentFilter))
+                {
+                    <a asp-action="Index" class="btn" style="background:rgba(139,148,158,0.1);border:1px solid #30363d;color:#8b949e;">
+                        <i class="fa-solid fa-xmark"></i>
+                    </a>
+                }
+            </div>
         </div>
-    </div>
+    </form>
+</div>
 
-    <div class="card border-0 shadow-sm rounded-3 overflow-hidden">
-        <div class="table-responsive">
-            <table class="table table-hover align-middle mb-0">
-                <thead class="table-dark bg-gradient text-uppercase" style="font-size: 0.85rem; letter-spacing: 0.5px;">
-                    <tr>
-                        <th class="ps-4 py-3">Ürün Adı</th>
-                        <th class="py-3 text-center" style="width: 200px;">Fiyatı</th>
-                        <th class="py-3 text-center" style="width: 200px;">Bulunduğu Salon</th>
-                        <th class="pe-4 py-3 text-end" style="width: 250px;">İşlemler</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if (Model != null && Model.Any())
-                    {
-                        foreach (var supplement in Model)
-                        {
-                            <tr>
-                                <td class="ps-4 py-3 fw-semibold text-dark">
-                                    <div class="d-flex align-items-center">
-                                        <div class="avatar-circle me-3 bg-success-subtle text-success rounded-circle d-flex align-items-center justify-content-center fw-bold" style="width: 40px; height: 40px; min-width: 40px;">
-                                            <i class="fa-solid fa-cubes-stacked" style="font-size: 0.95rem;"></i>
-                                        </div>
-                                        <span>@supplement.SupplementAdi</span>
-                                    </div>
-                                </td>
-                                <td class="py-3 text-center">
-                                    <span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-2 rounded-2 fw-bold" style="font-size: 0.9rem;">
-                                        @string.Format("{0:C2}", supplement.SupplementFiyati)
-                                    </span>
-                                </td>
-                                <td class="ps-4 py-3 fw-semibold text-dark">
-                                    <div class="d-flex align-items-center">
-                                        <div class="avatar-circle me-3 bg-success-subtle text-success rounded-circle d-flex align-items-center justify-content-center fw-bold" style="width: 40px; height: 40px; min-width: 40px;">
-                                            <i class="fa-solid fa-cubes-stacked" style="font-size: 0.95rem;"></i>
-                                        </div>
-                                        <span>@supplement.salonlar.SalonAdi</span>
-                                    </div>
-                                </td>
-                                <td class="pe-4 py-3 text-end">
-                                    <div class="btn-group gap-1">
-                                        <a asp-action="Edit" asp-route-id="@supplement.SupplementID" class="btn btn-outline-warning btn-sm rounded-2 px-3">
-                                            <i class="fa-solid fa-pen-to-square me-1"></i> Güncelle
-                                        </a>
-                                        <a asp-action="Delete" asp-route-id="@supplement.SupplementID" class="btn btn-outline-danger btn-sm rounded-2 px-3">
-                                            <i class="fa-solid fa-trash me-1"></i> Sil
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr>
-                        }
-                    }
-                    else
+<div class="dark-card overflow-hidden">
+    <div class="table-responsive">
+        <table class="table dark-table mb-0">
+            <thead>
+                <tr>
+                    <th class="ps-4">Ürün Adı</th>
+                    <th class="text-center">Fiyatı</th>
+                    <th class="text-center">Bulunduğu Salon</th>
+                    <th class="text-end pe-4">İşlemler</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    foreach (var supplement in Model)
                     {
                         <tr>
-                            <td colspan="4" class="text-center py-5 text-muted">
-                                <i class="fa-solid fa-box-open display-6 d-block mb-3 text-secondary"></i>
-                                Aradığınız kriterlere uygun supplement bulunamadı.
+                            <td class="ps-4">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="avatar-dark icon-green" style="background:rgba(46,160,67,0.12);">
+                                        <i class="fa-solid fa-cubes-stacked" style="font-size:0.85rem;"></i>
+                                    </div>
+                                    <span style="color:#e6edf3;font-weight:600;">@supplement.SupplementAdi</span>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <span class="badge-dark-price">
+                                    @string.Format("{0:C2}", supplement.SupplementFiyati)
+                                </span>
+                            </td>
+                            <td class="text-center">
+                                <span class="badge-dark-salon">
+                                    <i class="fas fa-building me-1" style="font-size:0.7rem;"></i>
+                                    @supplement.salonlar?.SalonAdi
+                                </span>
+                            </td>
+                            <td class="text-end pe-4">
+                                <div class="d-flex align-items-center justify-content-end gap-1">
+                                    <a asp-action="Edit" asp-route-id="@supplement.SupplementID" class="btn btn-dark-edit">
+                                        <i class="fa-solid fa-pen-to-square me-1"></i>Güncelle
+                                    </a>
+                                    <a asp-action="Delete" asp-route-id="@supplement.SupplementID" class="btn btn-dark-delete">
+                                        <i class="fa-solid fa-trash me-1"></i>Sil
+                                    </a>
+                                </div>
                             </td>
                         </tr>
                     }
-                </tbody>
-            </table>
-        </div>
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="4" class="text-center py-5">
+                            <i class="fa-solid fa-box-open fa-2x d-block mb-3" style="color:#30363d;"></i>
+                            <span style="color:#6e7681;font-size:0.875rem;">Aradığınız kriterlere uygun supplement bulunamadı.</span>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </div>
-
 </div>
-
-<style>
-    .table-hover tbody tr:hover {
-        background-color: rgba(25, 135, 84, 0.02);
-        transition: background-color 0.2s ease-in-out;
-    }
-
-    .form-control:focus {
-        box-shadow: none;
-        border-color: #dee2e6;
-    }
-
-    .input-group:focus-within {
-        box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.15);
-        border-radius: 0.375rem;
-    }
-
-    .bg-success-subtle {
-        background-color: rgba(25, 135, 84, 0.1) !important;
-    }
-
-    .text-success {
-        color: #198754 !important;
-    }
-
-    .border-success-subtle {
-        border-color: rgba(25, 135, 84, 0.2) !important;
-    }
-</style>

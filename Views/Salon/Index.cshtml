@@ -1,136 +1,108 @@
-﻿@{
+@{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
     ViewData["Title"] = "Salon Listesi";
 }
 
 @model IEnumerable<Project1.Models.Salon>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
-<div class="container py-5">
-
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <div>
-            <h2 class="fw-bold text-dark m-0">
-                <i class="fa-solid fa-map-location-dot text-info me-2" style="color:ghostwhite"></i>Salon / Şube Listesi
-            </h2>
-            <small class="text-muted" style="color:ghostwhite">Aktif antrenman salonlarını, konum bilgilerini ve şubeleri yönetin.</small>
-        </div>
-        <a asp-action="Create" class="btn btn-info text-white btn-lg shadow-sm rounded-pill px-4" style="background-color: #0dcaf0; border: none;">
+<div class="page-header">
+    <div>
+        <h1 class="page-title">
+            <div class="admin-nav-icon icon-amber" style="width:38px;height:38px;border-radius:10px;font-size:1rem;">
+                <i class="fa-solid fa-building"></i>
+            </div>
+            Salon / Şube Listesi
+        </h1>
+        <p class="page-subtitle">Aktif antrenman salonlarını, konum bilgilerini ve şubeleri yönetin.</p>
+    </div>
+    <div class="d-flex align-items-center gap-2">
+        <a asp-controller="Salon" asp-action="ExportToPdf" class="btn export-btn-pdf">
+            <i class="fa fa-file-pdf me-1"></i>PDF
+        </a>
+        <a asp-controller="Salon" asp-action="ExportToExcel" class="btn export-btn-excel">
+            <i class="fa fa-file-excel me-1"></i>Excel
+        </a>
+        <a asp-action="Create" class="btn" style="background:linear-gradient(135deg,#b08c07,#e3b341);color:#0d1117;border:none;border-radius:8px;padding:9px 18px;font-weight:700;font-size:0.875rem;">
             <i class="fa-solid fa-house-chimney-medical me-2"></i>Yeni Salon Ekle
         </a>
     </div>
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <a asp-controller="Salon" asp-action="ExportToPdf" class="btn btn-danger">
-            <i class="fa fa-file-pdf"></i> PDF Olarak İndir
-        </a>
-        <a asp-controller="Salon" asp-action="ExportToExcel" class="btn btn-success">
-            <i class="fa fa-file-excel"></i> Excel Olarak İndir
-        </a>
-    </div>
+</div>
 
-    <div class="card border-0 shadow-sm rounded-3 mb-4">
-        <div class="card-body p-3 bg-light rounded-3">
-            <form asp-action="Index" method="get">
-                <div class="row g-2 align-items-center">
-                    <div class="col-12 col-md-5 col-lg-4">
-                        <div class="input-group">
-                            <span class="input-group-text bg-white border-end-0 text-muted">
-                                <i class="fa-solid fa-magnifying-glass"></i>
-                            </span>
-                            <input type="text" name="searchString" class="form-control border-start-0 ps-0"
-                                   placeholder="Salon adı ara..." value="@ViewBag.CurrentFilter" />
-
-                            <button class="btn btn-info text-white px-4" type="submit" style="background-color: #0dcaf0; border: none;">Ara</button>
-
-                            @if (!String.IsNullOrEmpty(ViewBag.CurrentFilter))
-                            {
-                                <a asp-action="Index" class="btn btn-secondary"><i class="fa-solid fa-xmark"></i></a>
-                            }
-                        </div>
-                    </div>
-                </div>
-            </form>
+<div class="dark-search-card">
+    <form asp-action="Index" method="get">
+        <div class="d-flex align-items-center gap-2">
+            <div class="input-group dark-input-group" style="max-width:420px;">
+                <span class="input-group-text">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </span>
+                <input type="text" name="searchString" class="form-control"
+                       placeholder="Salon adı ara..." value="@ViewBag.CurrentFilter" />
+                <button class="btn" type="submit" style="background:rgba(228,166,15,0.1);border:1px solid rgba(228,166,15,0.25);color:#e3b341;font-size:0.85rem;padding:0 16px;">
+                    Ara
+                </button>
+                @if (!String.IsNullOrEmpty(ViewBag.CurrentFilter))
+                {
+                    <a asp-action="Index" class="btn" style="background:rgba(139,148,158,0.1);border:1px solid #30363d;color:#8b949e;">
+                        <i class="fa-solid fa-xmark"></i>
+                    </a>
+                }
+            </div>
         </div>
-    </div>
+    </form>
+</div>
 
-    <div class="card border-0 shadow-sm rounded-3 overflow-hidden">
-        <div class="table-responsive">
-            <table class="table table-hover align-middle mb-0">
-                <thead class="table-dark bg-gradient text-uppercase" style="font-size: 0.85rem; letter-spacing: 0.5px;">
-                    <tr>
-                        <th class="ps-4 py-3" style="width: 300px;">Salon Adı</th>
-                        <th class="py-3">Salon Adresi</th>
-                        <th class="pe-4 py-3 text-end" style="width: 250px;">İşlemler</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if (Model != null && Model.Any())
-                    {
-                        foreach (var salon in Model)
-                        {
-                            <tr>
-                                <td class="ps-4 py-3 fw-semibold text-dark">
-                                    <div class="d-flex align-items-center">
-                                        <div class="avatar-circle me-3 bg-info-subtle text-info rounded-circle d-flex align-items-center justify-content-center fw-bold" style="width: 40px; height: 40px; min-width: 40px;">
-                                            <i class="fa-solid fa-building-shield" style="font-size: 0.95rem;"></i>
-                                        </div>
-                                        <span>@salon.SalonAdi</span>
-                                    </div>
-                                </td>
-                                <td class="text-secondary py-3">
-                                    <i class="fa-solid fa-location-dot text-danger opacity-75 me-2"></i>@salon.SalonAdres
-                                </td>
-                                <td class="pe-4 py-3 text-end">
-                                    <div class="btn-group gap-1">
-                                        <a asp-action="Edit" asp-route-id="@salon.SalonID" class="btn btn-outline-warning btn-sm rounded-2 px-3">
-                                            <i class="fa-solid fa-pen-to-square me-1"></i> Güncelle
-                                        </a>
-                                        <a asp-action="Delete" asp-route-id="@salon.SalonID" class="btn btn-outline-danger btn-sm rounded-2 px-3">
-                                            <i class="fa-solid fa-trash me-1"></i> Sil
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr>
-                        }
-                    }
-                    else
+<div class="dark-card overflow-hidden">
+    <div class="table-responsive">
+        <table class="table dark-table mb-0">
+            <thead>
+                <tr>
+                    <th class="ps-4">Salon Adı</th>
+                    <th>Salon Adresi</th>
+                    <th class="text-end pe-4">İşlemler</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    foreach (var salon in Model)
                     {
                         <tr>
-                            <td colspan="3" class="text-center py-5 text-muted">
-                                <i class="fa-solid fa-map-pin display-6 d-block mb-3 text-secondary"></i>
-                                Aradığınız kriterlere uygun salon bulunamadı.
+                            <td class="ps-4">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="avatar-dark icon-amber" style="background:rgba(228,166,15,0.12);">
+                                        <i class="fa-solid fa-building-shield" style="font-size:0.85rem;"></i>
+                                    </div>
+                                    <span style="color:#e6edf3;font-weight:600;">@salon.SalonAdi</span>
+                                </div>
+                            </td>
+                            <td>
+                                <span style="color:#8b949e;">
+                                    <i class="fa-solid fa-location-dot me-2" style="color:#f85149;opacity:0.7;"></i>@salon.SalonAdres
+                                </span>
+                            </td>
+                            <td class="text-end pe-4">
+                                <div class="d-flex align-items-center justify-content-end gap-1">
+                                    <a asp-action="Edit" asp-route-id="@salon.SalonID" class="btn btn-dark-edit">
+                                        <i class="fa-solid fa-pen-to-square me-1"></i>Güncelle
+                                    </a>
+                                    <a asp-action="Delete" asp-route-id="@salon.SalonID" class="btn btn-dark-delete">
+                                        <i class="fa-solid fa-trash me-1"></i>Sil
+                                    </a>
+                                </div>
                             </td>
                         </tr>
                     }
-                </tbody>
-            </table>
-        </div>
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="3" class="text-center py-5">
+                            <i class="fa-solid fa-map-pin fa-2x d-block mb-3" style="color:#30363d;"></i>
+                            <span style="color:#6e7681;font-size:0.875rem;">Aradığınız kriterlere uygun salon bulunamadı.</span>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </div>
-
 </div>
-
-<style>
-    .table-hover tbody tr:hover {
-        background-color: rgba(13, 202, 240, 0.02);
-        transition: background-color 0.2s ease-in-out;
-    }
-
-    .form-control:focus {
-        box-shadow: none;
-        border-color: #dee2e6;
-    }
-
-    .input-group:focus-within {
-        box-shadow: 0 0 0 0.25rem rgba(13, 202, 240, 0.15);
-        border-radius: 0.375rem;
-    }
-
-    .bg-info-subtle {
-        background-color: rgba(13, 202, 240, 0.1) !important;
-    }
-
-    .text-info {
-        color: #0dcaf0 !important;
-    }
-</style>

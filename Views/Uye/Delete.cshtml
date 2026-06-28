@@ -1,25 +1,53 @@
-﻿@model Project1.Models.Uye
+@model Project1.Models.Uye
 
 @{
     ViewData["Title"] = "Üye Sil";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<div class="container mt-4">
-    <h2 class="text-danger">Üye Silme Onayı</h2>
-    <h3>Bu üyeyi silmek istediğinizden emin misiniz?</h3>
-    <hr />
-
-    <div class="card col-md-6 p-3">
-        <p><strong>Adı:</strong> @Model.UyeAdi</p>
-        <p><strong>Soyadı:</strong> @Model.UyeSoyadi</p>
-        <p><strong>Yaşı:</strong> @Model.Yas</p>
-
-        <form asp-action="Delete" method="post">
-            <input type="hidden" asp-for="UyeID" />
-            <input type="hidden" asp-for="SalonID" />
-            <button type="submit" class="btn btn-danger">Evet, Sil</button>
-            <a asp-action="Index" class="btn btn-secondary">Vazgeç</a>
-        </form>
+<div class="page-header">
+    <div>
+        <h1 class="page-title">
+            <div class="admin-nav-icon" style="width:38px;height:38px;border-radius:10px;font-size:1rem;background:rgba(248,81,73,0.15);color:#f85149;">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            Üye Silme Onayı
+        </h1>
+        <p class="page-subtitle">Bu işlem geri alınamaz. Lütfen dikkatli olun.</p>
     </div>
+</div>
+
+<div class="delete-card">
+    <div class="mb-4 pb-3" style="border-bottom:1px solid #21262d;">
+        <p style="color:#8b949e;font-size:0.875rem;margin:0;">
+            <i class="fas fa-info-circle me-2 text-warning"></i>
+            Aşağıdaki üyeyi kalıcı olarak silmek istediğinizden emin misiniz?
+        </p>
+    </div>
+
+    <div class="delete-info-row">
+        <span class="delete-info-label"><i class="fas fa-user me-2"></i>Adı</span>
+        <span class="delete-info-value">@Model.UyeAdi</span>
+    </div>
+    <div class="delete-info-row">
+        <span class="delete-info-label"><i class="fas fa-id-card me-2"></i>Soyadı</span>
+        <span class="delete-info-value">@Model.UyeSoyadi</span>
+    </div>
+    <div class="delete-info-row">
+        <span class="delete-info-label"><i class="fas fa-calendar me-2"></i>Yaşı</span>
+        <span class="delete-info-value">@Model.Yas</span>
+    </div>
+
+    <form asp-action="Delete" method="post" class="mt-4">
+        <input type="hidden" asp-for="UyeID" />
+        <input type="hidden" asp-for="SalonID" />
+        <div class="d-flex gap-2">
+            <button type="submit" class="btn" style="background:linear-gradient(135deg,#b91c1c,#dc2626);color:white;border:none;border-radius:8px;padding:10px 24px;font-weight:600;font-size:0.875rem;">
+                <i class="fa-solid fa-trash me-2"></i>Evet, Sil
+            </button>
+            <a asp-action="Index" class="btn" style="background:rgba(139,148,158,0.1);border:1px solid #30363d;color:#8b949e;border-radius:8px;padding:10px 20px;font-size:0.875rem;">
+                Vazgeç
+            </a>
+        </div>
+    </form>
 </div>

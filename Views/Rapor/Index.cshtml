@@ -1,199 +1,322 @@
-﻿@{
+@{
     ViewData["Title"] = "Detaylı Raporlar";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<div class="container-fluid px-4 mt-4">
-    <div class="d-flex justify-content-between align-items-center">
-        <h1 class="mt-2 h3 fw-bold text-gray-800">Gelişmiş Tesis ve Üye Analiz Raporları</h1>
+<div class="page-header">
+    <div>
+        <h1 class="page-title">
+            <div class="admin-nav-icon icon-cyan" style="width:38px;height:38px;border-radius:10px;font-size:1rem;">
+                <i class="fa-solid fa-chart-line"></i>
+            </div>
+            Gelişmiş Tesis &amp; Üye Analiz Raporları
+        </h1>
+        <p class="page-subtitle">Güncel istatistikler, üye demografileri ve şube bazlı analizler.</p>
     </div>
-    <hr class="mb-4" />
-
-    <div class="row">
-        <div class="col-xl-6 mb-4">
-            <div class="card h-100 shadow-sm border-0" style="border-radius: 12px;">
-                <div class="card-header bg-primary text-white py-3" style="border-top-left-radius: 12px; border-top-right-radius: 12px;">
-                    <h5 class="card-title mb-0 fw-semibold"><i class="fas fa-users me-2"></i> Üye Demografisi Raporu</h5>
-                </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item d-flex justify-content-between align-items-center py-3">
-                        <span>Aktif Üyelerin Yaş Ortalaması:</span>
-                        <span class="badge bg-primary rounded-pill fs-6 px-3">@ViewBag.YasOrtalamasi Yaş</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center py-3">
-                        <span>En Yaşlı Üye Yaşı:</span>
-                        <span class="badge bg-dark rounded-pill fs-6 px-3">@ViewBag.EnYasliUye</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center py-3">
-                        <span>En Genç Üye Yaşı:</span>
-                        <span class="badge bg-info text-dark rounded-pill fs-6 px-3 fw-bold">@ViewBag.EnGencUye</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="col-xl-6 mb-4">
-            <div class="card h-100 shadow-sm border-0" style="border-radius: 12px;">
-                <div class="card-header bg-danger text-white py-3" style="border-top-left-radius: 12px; border-top-right-radius: 12px;">
-                    <h5 class="card-title mb-0 fw-semibold"><i class="fas fa-capsules me-2"></i> Mağaza & Ürün Çeşitliliği</h5>
-                </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item d-flex justify-content-between align-items-center py-3">
-                        <span>En Pahalı Ürün:</span>
-                        <span class="fw-bold text-danger fs-6">@ViewBag.EnPahaliUrunAdi</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center py-3">
-                        <span>En Pahalı Ürünün Fiyatı:</span>
-                        <span class="badge bg-danger rounded-pill fs-6 px-3">@ViewBag.EnPahaliUrunFiyat TL</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center py-3">
-                        <span>Toplam Ürün Çeşidi (Envanter):</span>
-                        <span class="badge bg-dark rounded-pill fs-6 px-3">@ViewBag.ToplamUrunCesidi Çeşit</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="col-xl-6 mb-4">
-            <div class="card h-100 shadow-sm border-0" style="border-radius: 12px;">
-                <div class="card-header bg-warning text-dark py-3" style="border-top-left-radius: 12px; border-top-right-radius: 12px;">
-                    <h5 class="card-title mb-0 fw-semibold"><i class="fas fa-chart-pie me-2"></i> Şubelere Göre Üye Dağılımı</h5>
-                </div>
-                <div class="card-body p-0">
-                    <div class="table-responsive">
-                        <table class="table table-hover align-middle mb-0">
-                            <thead class="table-light">
-                                <tr>
-                                    <th class="ps-3">Salon Adı</th>
-                                    <th class="text-end pe-3">Kayıtlı Üye Sayısı</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @if (ViewBag.SalonUyeSayilari != null)
-                                {
-                                    foreach (var item in ViewBag.SalonUyeSayilari)
-                                    {
-                                        <tr>
-                                            <td class="ps-3 fw-medium">@item.SalonAdi</td>
-                                            <td class="text-end pe-3">
-                                                <span class="badge bg-warning text-dark rounded-pill px-3 fw-bold">@item.UyeSayisi Üye</span>
-                                            </td>
-                                        </tr>
-                                    }
-                                }
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-xl-6 mb-4">
-            <div class="card h-100 shadow-sm border-0" style="border-radius: 12px;">
-                <div class="card-header bg-success text-white py-3" style="border-top-left-radius: 12px; border-top-right-radius: 12px;">
-                    <h5 class="card-title mb-0 fw-semibold"><i class="fas fa-dumbbell me-2"></i> Antrenör Sorumluluk Atamaları</h5>
-                </div>
-                <div class="card-body p-0" style="max-height: 250px; overflow-y: auto;">
-                    <div class="table-responsive">
-                        <table class="table table-hover align-middle mb-0">
-                            <thead class="table-light sticky-top">
-                                <tr>
-                                    <th class="ps-3">Antrenör (Kullanıcı Adı)</th>
-                                    <th class="ps-3">Sorumlu Olduğu Üye</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @if (ViewBag.AntrenorUyeListesi != null)
-                                {
-                                    foreach (var item in ViewBag.AntrenorUyeListesi)
-                                    {
-                                        <tr>
-                                            <td class="ps-3 fw-medium text-success">@item.AntrenorAdi</td>
-                                            <td class="ps-3">@item.UyeAdi</td>
-                                        </tr>
-                                    }
-                                }
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-xl-6 mb-4">
-            <div class="card h-100 shadow-sm border-0" style="border-radius: 12px;">
-                <div class="card-header bg-info text-dark py-3" style="border-top-left-radius: 12px; border-top-right-radius: 12px;">
-                    <h5 class="card-title mb-0 fw-semibold"><i class="fas fa-map-marker-alt me-2"></i> Üye - Şube Eşleşmeleri</h5>
-                </div>
-                <div class="card-body p-0" style="max-height: 250px; overflow-y: auto;">
-                    <div class="table-responsive">
-                        <table class="table table-hover align-middle mb-0">
-                            <thead class="table-light sticky-top">
-                                <tr>
-                                    <th class="ps-3">Üye Adı Soyadı</th>
-                                    <th class="ps-3">Kayıtlı Olduğu Salon</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @if (ViewBag.UyeSalonListesi != null)
-                                {
-                                    foreach (var item in ViewBag.UyeSalonListesi)
-                                    {
-                                        <tr>
-                                            <td class="ps-3 fw-medium">@item.UyeAdi</td>
-                                            <td class="ps-3 text-muted">@item.SalonAdi</td>
-                                        </tr>
-                                    }
-                                }
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-xl-6 mb-4">
-            <div class="card h-100 shadow-sm border-0" style="border-radius: 12px;">
-                <div class="card-header bg-secondary text-white py-3" style="border-top-left-radius: 12px; border-top-right-radius: 12px;">
-                    <h5 class="card-title mb-0 fw-semibold"><i class="fas fa-store me-2"></i> Şube Supplement Envanter Dağılımı</h5>
-                </div>
-                <div class="card-body p-0" style="max-height: 250px; overflow-y: auto;">
-                    <div class="table-responsive">
-                        <table class="table table-hover align-middle mb-0">
-                            <thead class="table-light sticky-top">
-                                <tr>
-                                    <th class="ps-3">Ürün Adı</th>
-                                    <th class="ps-3">Satışta Olduğu Şube</th>
-                                    <th class="text-end pe-3">Fiyat</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @if (ViewBag.SupplementSalonListesi != null)
-                                {
-                                    foreach (var item in ViewBag.SupplementSalonListesi)
-                                    {
-                                        <tr>
-                                            <td class="ps-3 fw-medium">@item.SupplementAdi</td>
-                                            <td class="ps-3">@item.SalonAdi</td>
-                                            <td class="text-end pe-3 fw-bold text-secondary">@item.Fiyat TL</td>
-                                        </tr>
-                                    }
-                                }
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+    <div class="d-flex align-items-center gap-2">
+        <a asp-controller="Rapor" asp-action="ExportToPdf" class="btn export-btn-pdf">
+            <i class="fa fa-file-pdf me-1"></i>PDF İndir
+        </a>
+        <a asp-controller="Rapor" asp-action="ExportToExcel" class="btn export-btn-excel">
+            <i class="fa fa-file-excel me-1"></i>Excel İndir
+        </a>
     </div>
 </div>
-<br /><br />
-<div class="d-flex align-items-center mb-4">
-    <a asp-controller="Rapor" asp-action="ExportToPdf" class="btn btn-danger">
-        <i class="fa fa-file-pdf"></i> PDF Olarak İndir
-    </a>
-    <a asp-controller="Rapor" asp-action="ExportToExcel" class="btn btn-success">
-        <i class="fa fa-file-excel"></i> Excel Olarak İndir
-    </a>
+
+<div class="row g-4">
+
+    <!-- Üye Demografisi -->
+    <div class="col-xl-6">
+        <div class="dark-card h-100">
+            <div class="report-card-header" style="border-left:3px solid #58a6ff;">
+                <div class="report-card-icon" style="background:rgba(56,139,253,0.15);color:#58a6ff;">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div>
+                    <h5 class="report-card-title">Üye Demografisi Raporu</h5>
+                    <p class="report-card-subtitle">Yaş dağılımı ve demografik veriler</p>
+                </div>
+            </div>
+            <div class="report-card-body">
+                <div class="report-stat-row">
+                    <span class="report-stat-label">
+                        <i class="fas fa-calculator me-2" style="color:#58a6ff;"></i>
+                        Aktif Üyelerin Yaş Ortalaması
+                    </span>
+                    <span class="report-stat-value" style="background:rgba(56,139,253,0.1);color:#79c0ff;">
+                        @ViewBag.YasOrtalamasi Yaş
+                    </span>
+                </div>
+                <div class="report-stat-row">
+                    <span class="report-stat-label">
+                        <i class="fas fa-arrow-up me-2" style="color:#f85149;"></i>
+                        En Yaşlı Üye Yaşı
+                    </span>
+                    <span class="report-stat-value" style="background:rgba(248,81,73,0.1);color:#f85149;">
+                        @ViewBag.EnYasliUye
+                    </span>
+                </div>
+                <div class="report-stat-row" style="border-bottom:none;">
+                    <span class="report-stat-label">
+                        <i class="fas fa-arrow-down me-2" style="color:#56d364;"></i>
+                        En Genç Üye Yaşı
+                    </span>
+                    <span class="report-stat-value" style="background:rgba(46,160,67,0.1);color:#56d364;">
+                        @ViewBag.EnGencUye
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mağaza & Ürün -->
+    <div class="col-xl-6">
+        <div class="dark-card h-100">
+            <div class="report-card-header" style="border-left:3px solid #f85149;">
+                <div class="report-card-icon" style="background:rgba(248,81,73,0.15);color:#f85149;">
+                    <i class="fas fa-capsules"></i>
+                </div>
+                <div>
+                    <h5 class="report-card-title">Mağaza &amp; Ürün Çeşitliliği</h5>
+                    <p class="report-card-subtitle">Supplement stok ve fiyat analizi</p>
+                </div>
+            </div>
+            <div class="report-card-body">
+                <div class="report-stat-row">
+                    <span class="report-stat-label">
+                        <i class="fas fa-crown me-2" style="color:#e3b341;"></i>
+                        En Pahalı Ürün
+                    </span>
+                    <span class="report-stat-value" style="background:rgba(228,166,15,0.1);color:#e3b341;">
+                        @ViewBag.EnPahaliUrunAdi
+                    </span>
+                </div>
+                <div class="report-stat-row">
+                    <span class="report-stat-label">
+                        <i class="fas fa-tag me-2" style="color:#f85149;"></i>
+                        En Pahalı Ürünün Fiyatı
+                    </span>
+                    <span class="report-stat-value" style="background:rgba(248,81,73,0.1);color:#f85149;">
+                        @ViewBag.EnPahaliUrunFiyat TL
+                    </span>
+                </div>
+                <div class="report-stat-row" style="border-bottom:none;">
+                    <span class="report-stat-label">
+                        <i class="fas fa-cubes-stacked me-2" style="color:#8b949e;"></i>
+                        Toplam Ürün Çeşidi (Envanter)
+                    </span>
+                    <span class="report-stat-value" style="background:rgba(139,148,158,0.1);color:#c9d1d9;">
+                        @ViewBag.ToplamUrunCesidi Çeşit
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Şubelere Göre Üye Dağılımı -->
+    <div class="col-xl-6">
+        <div class="dark-card h-100">
+            <div class="report-card-header" style="border-left:3px solid #e3b341;">
+                <div class="report-card-icon" style="background:rgba(228,166,15,0.15);color:#e3b341;">
+                    <i class="fas fa-chart-pie"></i>
+                </div>
+                <div>
+                    <h5 class="report-card-title">Şubelere Göre Üye Dağılımı</h5>
+                    <p class="report-card-subtitle">Her şubedeki kayıtlı üye sayısı</p>
+                </div>
+            </div>
+            <div class="report-card-body p-0">
+                <table class="table dark-table mb-0">
+                    <thead>
+                        <tr>
+                            <th class="ps-4">Salon Adı</th>
+                            <th class="text-end pe-4">Kayıtlı Üye Sayısı</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (ViewBag.SalonUyeSayilari != null)
+                        {
+                            foreach (var item in ViewBag.SalonUyeSayilari)
+                            {
+                                <tr>
+                                    <td class="ps-4" style="color:#c9d1d9;">
+                                        <i class="fas fa-building me-2" style="color:#e3b341;"></i>@item.SalonAdi
+                                    </td>
+                                    <td class="text-end pe-4">
+                                        <span class="badge-dark-salon">@item.UyeSayisi Üye</span>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Antrenör Sorumluluk -->
+    <div class="col-xl-6">
+        <div class="dark-card h-100">
+            <div class="report-card-header" style="border-left:3px solid #56d364;">
+                <div class="report-card-icon" style="background:rgba(46,160,67,0.15);color:#56d364;">
+                    <i class="fas fa-dumbbell"></i>
+                </div>
+                <div>
+                    <h5 class="report-card-title">Antrenör Sorumluluk Atamaları</h5>
+                    <p class="report-card-subtitle">Antrenör — Üye eşleşme listesi</p>
+                </div>
+            </div>
+            <div class="report-card-body p-0" style="max-height:260px;overflow-y:auto;">
+                <table class="table dark-table mb-0">
+                    <thead class="sticky-top">
+                        <tr>
+                            <th class="ps-4">Antrenör</th>
+                            <th class="pe-4">Sorumlu Üye</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (ViewBag.AntrenorUyeListesi != null)
+                        {
+                            foreach (var item in ViewBag.AntrenorUyeListesi)
+                            {
+                                <tr>
+                                    <td class="ps-4">
+                                        <span style="color:#56d364;font-weight:600;">@item.AntrenorAdi</span>
+                                    </td>
+                                    <td class="pe-4" style="color:#8b949e;">@item.UyeAdi</td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Üye — Şube Eşleşmeleri -->
+    <div class="col-xl-6">
+        <div class="dark-card h-100">
+            <div class="report-card-header" style="border-left:3px solid #79c0ff;">
+                <div class="report-card-icon" style="background:rgba(56,139,253,0.1);color:#79c0ff;">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div>
+                    <h5 class="report-card-title">Üye — Şube Eşleşmeleri</h5>
+                    <p class="report-card-subtitle">Hangi üye hangi salona kayıtlı?</p>
+                </div>
+            </div>
+            <div class="report-card-body p-0" style="max-height:260px;overflow-y:auto;">
+                <table class="table dark-table mb-0">
+                    <thead class="sticky-top">
+                        <tr>
+                            <th class="ps-4">Üye Adı Soyadı</th>
+                            <th class="pe-4">Kayıtlı Salon</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (ViewBag.UyeSalonListesi != null)
+                        {
+                            foreach (var item in ViewBag.UyeSalonListesi)
+                            {
+                                <tr>
+                                    <td class="ps-4" style="color:#c9d1d9;font-weight:500;">@item.UyeAdi</td>
+                                    <td class="pe-4" style="color:#8b949e;">@item.SalonAdi</td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Şube Supplement Envanter -->
+    <div class="col-xl-6">
+        <div class="dark-card h-100">
+            <div class="report-card-header" style="border-left:3px solid #bc8cff;">
+                <div class="report-card-icon" style="background:rgba(188,140,255,0.15);color:#bc8cff;">
+                    <i class="fas fa-store"></i>
+                </div>
+                <div>
+                    <h5 class="report-card-title">Şube Supplement Envanter Dağılımı</h5>
+                    <p class="report-card-subtitle">Her şubedeki supplement ürün listesi</p>
+                </div>
+            </div>
+            <div class="report-card-body p-0" style="max-height:260px;overflow-y:auto;">
+                <table class="table dark-table mb-0">
+                    <thead class="sticky-top">
+                        <tr>
+                            <th class="ps-4">Ürün Adı</th>
+                            <th>Satıldığı Şube</th>
+                            <th class="text-end pe-4">Fiyat</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (ViewBag.SupplementSalonListesi != null)
+                        {
+                            foreach (var item in ViewBag.SupplementSalonListesi)
+                            {
+                                <tr>
+                                    <td class="ps-4" style="color:#c9d1d9;font-weight:500;">@item.SupplementAdi</td>
+                                    <td style="color:#8b949e;">@item.SalonAdi</td>
+                                    <td class="text-end pe-4">
+                                        <span class="badge-dark-price">@item.Fiyat TL</span>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
 </div>
+
+<style>
+    .report-card-header {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+        padding: 20px 24px 16px;
+        border-bottom: 1px solid #21262d;
+    }
+    .report-card-icon {
+        width: 40px; height: 40px; min-width: 40px;
+        border-radius: 10px;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 1rem;
+    }
+    .report-card-title {
+        color: #e6edf3;
+        font-size: 0.9rem;
+        font-weight: 700;
+        margin: 0 0 3px;
+    }
+    .report-card-subtitle {
+        color: #6e7681;
+        font-size: 0.75rem;
+        margin: 0;
+    }
+    .report-card-body { padding: 4px 0; }
+    .report-stat-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 14px 24px;
+        border-bottom: 1px solid #21262d;
+    }
+    .report-stat-label {
+        color: #8b949e;
+        font-size: 0.875rem;
+        display: flex;
+        align-items: center;
+    }
+    .report-stat-value {
+        border-radius: 6px;
+        padding: 4px 12px;
+        font-size: 0.85rem;
+        font-weight: 700;
+    }
+    .dark-table thead th { background: #21262d !important; }
+</style>

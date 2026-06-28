@@ -1,163 +1,116 @@
-﻿@{
+@{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
     ViewData["Title"] = "Antrenör Listesi";
 }
 
 @model IEnumerable<Project1.Models.Antrenor>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
-<div class="container py-5">
-
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <div>
-            <h2 class="fw-bold text-dark m-0">
-                <i class="fa-solid fa-user-gear text-purple me-2" style="color:ghostwhite"></i>Antrenör Kadrosu
-            </h2>
-            <small class="text-muted" style="color:ghostwhite">Eğitmenleri, uzmanlık yaşlarını ve tecrübe sürelerini yönetin.</small>
-        </div>
-        <a asp-action="Create" class="btn btn-purple btn-lg shadow-sm rounded-pill px-4 text-white">
+<div class="page-header">
+    <div>
+        <h1 class="page-title">
+            <div class="admin-nav-icon icon-purple" style="width:38px;height:38px;border-radius:10px;font-size:1rem;">
+                <i class="fa-solid fa-dumbbell"></i>
+            </div>
+            Antrenör Kadrosu
+        </h1>
+        <p class="page-subtitle">Eğitmenleri, uzmanlık yaşlarını ve tecrübe sürelerini yönetin.</p>
+    </div>
+    <div class="d-flex align-items-center gap-2">
+        <a asp-controller="Antrenor" asp-action="ExportToPdf" class="btn export-btn-pdf">
+            <i class="fa fa-file-pdf me-1"></i>PDF
+        </a>
+        <a asp-controller="Antrenor" asp-action="ExportToExcel" class="btn export-btn-excel">
+            <i class="fa fa-file-excel me-1"></i>Excel
+        </a>
+        <a asp-action="Create" class="btn" style="background:linear-gradient(135deg,#6e40c9,#8957e5);color:white;border:none;border-radius:8px;padding:9px 18px;font-weight:600;font-size:0.875rem;">
             <i class="fa-solid fa-user-plus me-2"></i>Yeni Antrenör Ekle
         </a>
     </div>
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <a asp-controller="Antrenor" asp-action="ExportToPdf" class="btn btn-danger">
-            <i class="fa fa-file-pdf"></i> PDF Olarak İndir
-        </a>
-        <a asp-controller="Antrenor" asp-action="ExportToExcel" class="btn btn-success">
-            <i class="fa fa-file-excel"></i> Excel Olarak İndir
-        </a>
-    </div>
+</div>
 
-    <div class="card border-0 shadow-sm rounded-3 mb-4">
-        <div class="card-body p-3 bg-light rounded-3">
-            <form asp-action="Index" method="get">
-                <div class="row g-2 align-items-center">
-                    <div class="col-12 col-md-5 col-lg-4">
-                        <div class="input-group">
-                            <span class="input-group-text bg-white border-end-0 text-muted">
-                                <i class="fa-solid fa-magnifying-glass"></i>
-                            </span>
-                            <input type="text" name="searchString" class="form-control border-start-0 ps-0"
-                                   placeholder="Antrenörün kullanıcı adı..." value="@ViewBag.CurrentFilter" />
-
-                            <button class="btn btn-purple text-white px-4" type="submit">Ara</button>
-
-                            @if (!String.IsNullOrEmpty(ViewBag.CurrentFilter))
-                            {
-                                <a asp-action="Index" class="btn btn-secondary"><i class="fa-solid fa-xmark"></i></a>
-                            }
-                        </div>
-                    </div>
-                </div>
-            </form>
+<div class="dark-search-card">
+    <form asp-action="Index" method="get">
+        <div class="d-flex align-items-center gap-2">
+            <div class="input-group dark-input-group" style="max-width:420px;">
+                <span class="input-group-text">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </span>
+                <input type="text" name="searchString" class="form-control"
+                       placeholder="Antrenörün kullanıcı adı..." value="@ViewBag.CurrentFilter" />
+                <button class="btn" type="submit" style="background:rgba(188,140,255,0.1);border:1px solid rgba(188,140,255,0.25);color:#d2a8ff;font-size:0.85rem;padding:0 16px;">
+                    Ara
+                </button>
+                @if (!String.IsNullOrEmpty(ViewBag.CurrentFilter))
+                {
+                    <a asp-action="Index" class="btn" style="background:rgba(139,148,158,0.1);border:1px solid #30363d;color:#8b949e;">
+                        <i class="fa-solid fa-xmark"></i>
+                    </a>
+                }
+            </div>
         </div>
-    </div>
+    </form>
+</div>
 
-    <div class="card border-0 shadow-sm rounded-3 overflow-hidden">
-        <div class="table-responsive">
-            <table class="table table-hover align-middle mb-0">
-                <thead class="table-dark bg-gradient text-uppercase" style="font-size: 0.85rem; letter-spacing: 0.5px;">
-                    <tr>
-                        <th class="ps-4 py-3">Kullanıcı Adı</th>
-                        <th class="py-3 text-center" style="width: 150px;">Yaş</th>
-                        <th class="py-3 text-center" style="width: 180px;">Tecrübe Yılı</th>
-                        <th class="py-3 text-center" style="width: 180px;">Özel Üye</th>
-                        <th class="pe-4 py-3 text-end" style="width: 250px;">İşlemler</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if (Model != null && Model.Any())
-                    {
-                        foreach (var antrenor in Model)
-                        {
-                            <tr>
-                                <td class="ps-4 py-3 fw-semibold text-dark">
-                                    <div class="d-flex align-items-center">
-                                        <div class="avatar-circle me-3 bg-purple-subtle text-purple rounded-circle d-flex align-items-center justify-content-center fw-bold" style="width: 40px; height: 40px; min-width: 40px;">
-                                            @(string.IsNullOrEmpty(antrenor.userName) ? "A" : antrenor.userName.Substring(0, 1).ToUpper())
-                                        </div>
-                                        <span>@antrenor.userName</span>
-                                    </div>
-                                </td>
-                                <td class="py-3 text-center">
-                                    <span class="badge bg-light text-dark border px-3 py-2 rounded-pill fw-medium">@antrenor.Yas Yaş</span>
-                                </td>
-                                <td class="py-3 text-center">
-                                    <span class="badge bg-purple-subtle text-purple border border-purple-subtle px-3 py-2 rounded-2 fw-bold">
-                                        <i class="fa-solid fa-star me-1" style="font-size: 0.8rem;"></i> @antrenor.TecrübeYili Yıl
-                                    </span>
-                                </td>
-                                <td class="py-3 text-center">
-                                    <span class="badge bg-purple-subtle text-purple border border-purple-subtle px-3 py-2 rounded-2 fw-bold">
-                                        <i class="fa-solid fa-star me-1" style="font-size: 0.8rem;"></i> @antrenor.uyeler?.UyeAdi
-                                    </span>
-                                </td>
-                               
-                                <td class="pe-4 py-3 text-end">
-                                    <div class="btn-group gap-1">
-                                        <a asp-action="Edit" asp-route-id="@antrenor.AntrenorID" class="btn btn-outline-warning btn-sm rounded-2 px-3">
-                                            <i class="fa-solid fa-pen-to-square me-1"></i> Güncelle
-                                        </a>
-                                        <a asp-action="Delete" asp-route-id="@antrenor.AntrenorID" class="btn btn-outline-danger btn-sm rounded-2 px-3">
-                                            <i class="fa-solid fa-trash me-1"></i> Sil
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr>
-                        }
-                    }
-                    else
+<div class="dark-card overflow-hidden">
+    <div class="table-responsive">
+        <table class="table dark-table mb-0">
+            <thead>
+                <tr>
+                    <th class="ps-4">Kullanıcı Adı</th>
+                    <th class="text-center">Yaş</th>
+                    <th class="text-center">Tecrübe Yılı</th>
+                    <th class="text-center">Özel Üye</th>
+                    <th class="text-end pe-4">İşlemler</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    foreach (var antrenor in Model)
                     {
                         <tr>
-                            <td colspan="5" class="text-center py-5 text-muted">
-                                <i class="fa-solid fa-user-ninja display-6 d-block mb-3 text-secondary"></i>
-                                Aradığınız kriterlere uygun antrenör bulunamadı.
+                            <td class="ps-4">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="avatar-dark icon-purple" style="background:rgba(188,140,255,0.12);">
+                                        @(string.IsNullOrEmpty(antrenor.userName) ? "A" : antrenor.userName.Substring(0, 1).ToUpper())
+                                    </div>
+                                    <span style="color:#e6edf3;font-weight:600;">@antrenor.userName</span>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <span class="badge-dark-age">@antrenor.Yas Yaş</span>
+                            </td>
+                            <td class="text-center">
+                                <span class="badge-dark-exp">
+                                    <i class="fa-solid fa-star me-1" style="font-size:0.7rem;"></i>@antrenor.TecrübeYili Yıl
+                                </span>
+                            </td>
+                            <td class="text-center">
+                                <span style="color:#8b949e;font-size:0.875rem;">@antrenor.uyeler?.UyeAdi</span>
+                            </td>
+                            <td class="text-end pe-4">
+                                <div class="d-flex align-items-center justify-content-end gap-1">
+                                    <a asp-action="Edit" asp-route-id="@antrenor.AntrenorID" class="btn btn-dark-edit">
+                                        <i class="fa-solid fa-pen-to-square me-1"></i>Güncelle
+                                    </a>
+                                    <a asp-action="Delete" asp-route-id="@antrenor.AntrenorID" class="btn btn-dark-delete">
+                                        <i class="fa-solid fa-trash me-1"></i>Sil
+                                    </a>
+                                </div>
                             </td>
                         </tr>
                     }
-                </tbody>
-            </table>
-        </div>
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="5" class="text-center py-5">
+                            <i class="fa-solid fa-user-ninja fa-2x d-block mb-3" style="color:#30363d;"></i>
+                            <span style="color:#6e7681;font-size:0.875rem;">Aradığınız kriterlere uygun antrenör bulunamadı.</span>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </div>
-
 </div>
-
-<style>
-    .btn-purple {
-        background-color: #6f42c1 !important;
-        border-color: #6f42c1 !important;
-    }
-
-        .btn-purple:hover {
-            background-color: #59339e !important;
-            border-color: #59339e !important;
-        }
-
-    .text-purple {
-        color: #6f42c1 !important;
-    }
-
-    .bg-purple-subtle {
-        background-color: rgba(111, 66, 193, 0.1) !important;
-    }
-
-    .border-purple-subtle {
-        border-color: rgba(111, 66, 193, 0.2) !important;
-    }
-
-    .table-hover tbody tr:hover {
-        background-color: rgba(111, 66, 193, 0.02);
-        transition: background-color 0.2s ease-in-out;
-    }
-
-    .form-control:focus {
-        box-shadow: none;
-        border-color: #dee2e6;
-    }
-
-    .input-group:focus-within {
-        box-shadow: 0 0 0 0.25rem rgba(111, 66, 193, 0.15);
-        border-radius: 0.375rem;
-    }
-</style>
