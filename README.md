@@ -149,17 +149,6 @@ FitnessManagement-MVC-CodeFirst/
 
 ---
 
-## 📸 Ekran Görüntüleri
-
-| Admin Panel | Üye Listesi |
-|------------|-------------|
-| Karanlık sidebar, aktif menü gösterimi | Tablo bazlı üye yönetimi |
-
-| Rapor Sayfası | Form Sayfaları |
-|--------------|----------------|
-| Kart bazlı analiz raporları | Glassmorphism form kartları |
-
----
 
 ## 📄 Lisans
 
