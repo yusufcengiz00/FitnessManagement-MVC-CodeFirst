@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OfficeOpenXml;
 using Project1.Models;
@@ -138,22 +138,15 @@ namespace Project1.Controllers
         }
         public IActionResult Index(string searchString)
         {
-            // Veritabanındaki üyeleri sorgu olarak hazırlıyoruz (hemen ToList yapmıyoruz)
-            var uyeler = from u in _context.uyes
-                         select u;
+            var uyeler = _context.uyes.Include(a => a.Salonlar).AsQueryable();
 
-            // Eğer arama kutusuna bir şey yazılmışsa filtreleme yapıyoruz
             if (!String.IsNullOrEmpty(searchString))
             {
-                // Üye adında veya soyadında bu kelime geçenleri filtrele
                 uyeler = uyeler.Where(s => s.UyeAdi.Contains(searchString) || s.UyeSoyadi.Contains(searchString));
             }
 
-            // Arama kelimesini kutunun içinde çakılı kalsın diye ViewBag ile sayfaya geri gönderiyoruz
             ViewBag.CurrentFilter = searchString;
 
-            uyeler = _context.uyes.Include(a => a.Salonlar).AsQueryable();
-            // Filtrelenmiş listeyi ToList() diyerek sayfaya gönderiyoruz
             return View(uyeler.ToList());
         }
         [HttpGet]

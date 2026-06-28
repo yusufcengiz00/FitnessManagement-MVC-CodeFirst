@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OfficeOpenXml;
 using Project1.Models;
@@ -139,18 +139,14 @@ namespace Project1.Controllers
 
         public IActionResult Index(string searchString)
         {
-          
-            var supplement = from u in _context.supplements
-                         select u;
+            var supplement = _context.supplements.Include(a => a.salonlar).AsQueryable();
 
             if (!String.IsNullOrEmpty(searchString))
             {
-
                 supplement = supplement.Where(s => s.SupplementAdi.Contains(searchString));
             }
 
             ViewBag.CurrentFilter = searchString;
-            supplement = _context.supplements.Include(a => a.salonlar).AsQueryable();
 
             return View(supplement.ToList());
         }

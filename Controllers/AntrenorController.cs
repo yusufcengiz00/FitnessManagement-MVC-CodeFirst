@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OfficeOpenXml;
 using Project1.Models;
@@ -151,8 +151,7 @@ namespace Project1.Controllers
         }
         public IActionResult Index(string searchString)
         {
-            var antrenorler = from u in _context.antrenors
-                         select u;
+            var antrenorler = _context.antrenors.Include(a => a.uyeler).AsQueryable();
 
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -160,7 +159,6 @@ namespace Project1.Controllers
             }
 
             ViewBag.CurrentFilter = searchString;
-             antrenorler = _context.antrenors.Include(a => a.uyeler).AsQueryable();
 
             return View(antrenorler.ToList());
         }
