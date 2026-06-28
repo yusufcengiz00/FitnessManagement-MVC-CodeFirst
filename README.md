@@ -2,7 +2,7 @@
 
 > **ASP.NET Core MVC + Entity Framework Code First** ile geliştirilmiş tam kapsamlı spor salonu yönetim uygulaması.
 
-![.NET](https://img.shields.io/badge/.NET-8.0-purple?style=flat-square&logo=dotnet)
+![.NET](https://img.shields.io/badge/.NET-10.0-purple?style=flat-square&logo=dotnet)
 ![ASP.NET Core MVC](https://img.shields.io/badge/ASP.NET_Core-MVC-blue?style=flat-square&logo=dotnet)
 ![Entity Framework](https://img.shields.io/badge/Entity_Framework-Code_First-green?style=flat-square)
 ![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3-7952B3?style=flat-square&logo=bootstrap)
@@ -55,19 +55,19 @@ Fitness Management System, spor salonlarının üye, antrenör, salon ve supplem
 
 | Katman | Teknoloji |
 |--------|-----------|
-| Backend | ASP.NET Core 8 MVC |
+| Backend | ASP.NET Core 10 MVC |
 | ORM | Entity Framework Core (Code First) |
 | Veritabanı | SQL Server / LocalDB |
 | Frontend | Bootstrap 5.3, Font Awesome 6, Inter Font |
-| PDF Export | iTextSharp / DinkToPdf |
-| Excel Export | EPPlus / ClosedXML |
+| PDF Export | QuestPDF (Community License) |
+| Excel Export | EPPlus |
 
 ---
 
 ## 🚀 Kurulum
 
 ### Gereksinimler
-- [.NET 8 SDK](https://dotnet.microsoft.com/download)
+- [.NET 10 SDK](https://dotnet.microsoft.com/download)
 - SQL Server / SQL Server Express / LocalDB
 - Visual Studio 2022 veya VS Code
 
