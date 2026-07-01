@@ -149,16 +149,51 @@ FitnessManagement-MVC-CodeFirst/
 
 ---
 
-## Görseller
+## 📸 Uygulama Görselleri
 
-<img width="1172" height="872" alt="Ekran görüntüsü 2026-07-01 200414" src="https://github.com/user-attachments/assets/d2e9d27d-60da-441b-8d91-b54c5b96228b" />
-<img width="1181" height="901" alt="Ekran görüntüsü 2026-07-01 200336" src="https://github.com/user-attachments/assets/4c60a46e-32e9-4010-996e-8fe91edc201c" />
-<img width="1187" height="613" alt="Ekran görüntüsü 2026-07-01 200213" src="https://github.com/user-attachments/assets/41abe7d2-eb39-474b-a028-4551cb591ff7" />
-<img width="1183" height="610" alt="Ekran görüntüsü 2026-07-01 200247" src="https://github.com/user-attachments/assets/6332e155-b231-4bdf-b99d-9f89f8631083" />
-<img width="1180" height="601" alt="Ekran görüntüsü 2026-07-01 200301" src="https://github.com/user-attachments/assets/4ee0403f-4c72-4240-9176-b592b88b30d4" />
-<img width="1182" height="551" alt="Ekran görüntüsü 2026-07-01 200316" src="https://github.com/user-attachments/assets/3b75bccb-3a63-4c37-b009-32cc158a623f" />
+### 🏠 Dashboard
 
-
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/d2e9d27d-60da-441b-8d91-b54c5b96228b" width="900" alt="Dashboard"/>
+</p>
 
 ---
+
+### 👨‍💻 Developers Sayfası
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/41abe7d2-eb39-474b-a028-4551cb591ff7" width="900" alt="Developers"/>
+</p>
+
+---
+
+### 📁 Projects Sayfası
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/6332e155-b231-4bdf-b99d-9f89f8631083" width="900" alt="Projects"/>
+</p>
+
+---
+
+### 💻 Technologies Sayfası
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/4ee0403f-4c72-4240-9176-b592b88b30d4" width="900" alt="Technologies"/>
+</p>
+
+---
+
+### ➕ Yeni Kayıt Ekleme
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/3b75bccb-3a63-4c37-b009-32cc158a623f" width="900" alt="Create"/>
+</p>
+
+---
+
+### 🔐 Giriş Ekranı
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/4c60a46e-32e9-4010-996e-8fe91edc201c" width="900" alt="Login"/>
+</p>
 
