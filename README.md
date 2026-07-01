@@ -151,49 +151,57 @@ FitnessManagement-MVC-CodeFirst/
 
 ## 📸 Uygulama Görselleri
 
-### 🏠 Dashboard
+### Arayüz
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/d2e9d27d-60da-441b-8d91-b54c5b96228b" width="900" alt="Dashboard"/>
+ <img width="1090" height="842" alt="image" src="https://github.com/user-attachments/assets/16c68359-adb3-421d-b87e-f57b188bc749" />
 </p>
 
 ---
 
-### 👨‍💻 Developers Sayfası
+### Admin Panel Giriş Ekranı
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/41abe7d2-eb39-474b-a028-4551cb591ff7" width="900" alt="Developers"/>
+<img width="1117" height="767" alt="image" src="https://github.com/user-attachments/assets/e0b1b687-9eca-41dc-9ea1-e8af0fa99617" />
 </p>
 
 ---
 
-### 📁 Projects Sayfası
+### Üye Yönetim Ekranı
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/6332e155-b231-4bdf-b99d-9f89f8631083" width="900" alt="Projects"/>
+   <img width="1116" height="581" alt="image" src="https://github.com/user-attachments/assets/0d3b69cb-a723-4501-a86a-4ec423820327" />
 </p>
 
 ---
 
-### 💻 Technologies Sayfası
+### Antrenör Yönetim Ekranı
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/4ee0403f-4c72-4240-9176-b592b88b30d4" width="900" alt="Technologies"/>
+   <img width="1118" height="590" alt="image" src="https://github.com/user-attachments/assets/445f5acd-1a4b-4c5a-97e2-6c8d9fb47677" />
 </p>
 
 ---
 
-### ➕ Yeni Kayıt Ekleme
+### Salon/Şube Yönetim Ekranı
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/3b75bccb-3a63-4c37-b009-32cc158a623f" width="900" alt="Create"/>
+ <img width="1122" height="557" alt="image" src="https://github.com/user-attachments/assets/79c72730-2c07-4f3e-924c-166ead292cd0" />
 </p>
 
 ---
 
-### 🔐 Giriş Ekranı
+### Supplement Yönetim Ekranı
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/4c60a46e-32e9-4010-996e-8fe91edc201c" width="900" alt="Login"/>
+  <img width="1120" height="497" alt="image" src="https://github.com/user-attachments/assets/cd3e9069-0627-4ea0-a1e2-e5f85291902c" />
+</p>
+
+---
+
+### Sistem Raporu Ekranı
+
+<p align="center">
+ <img width="1120" height="841" alt="image" src="https://github.com/user-attachments/assets/ad67fbfa-5862-415d-af83-7ee7fb114582" />
 </p>
 
